@@ -9,11 +9,22 @@ export default createGlobalStyle`
 
   html, body {
     background: var(--bg);
-    font: 600 1rem Roboto, system-ui, sans-serif;
+    font: 400 1rem Inter, system-ui, sans-serif;
+    color: var(--text);
   }
 
-  input, button {
+  body, textarea, input, button {
     outline: 0;
+    font: 400 1rem Inter, system-ui, sans-serif;
+  }
+
+  button {
+    cursor: pointer;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
   }
 
   :root {
@@ -25,5 +36,17 @@ export default createGlobalStyle`
       })
       return append
     }}
+  }
+
+  @media(max-width: 1080px) {
+    html {
+      font-size: 93.75%;
+    }
+  }
+
+  @media(max-width: 720px) {
+    html {
+      font-size: 87.5%;
+    }
   }
 `
