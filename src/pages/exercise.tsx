@@ -1,6 +1,6 @@
 import { useCallback, FormEvent } from 'react'
 import { useRouter } from 'next/router'
-import { signOut } from 'next-auth/client'
+import { signOut, useSession } from 'next-auth/client'
 
 import { Container } from '../components/Container'
 import { ExperienceBar } from '../components/ExperienceBar'
@@ -11,6 +11,8 @@ import { CompletedChallenges } from '../components/CompletedChallenges'
 import { Countdown } from '../components/Countdown'
 
 export default function Exercise() {
+  const [session, loading] = useSession()
+
   const router = useRouter()
 
   const handleLogout = useCallback((event: FormEvent) => {
@@ -26,18 +28,28 @@ export default function Exercise() {
       <Container>
         <SEO title="Move.it | Exercise" />
 
-        <ExperienceBar />
+        {loading && <p>Carregando..</p> }
 
-        <section>
-          <div>
-            <Profile imageUrl={'https://github.com/r3nanp.png'}></Profile>
-            <CompletedChallenges />
+        {session && (
+          <>
+            <ExperienceBar />
+            <section>
+              <div>
+                <Profile
+                  imageUrl={session.user.image}
+                  name={session.user.name}
+                />
+                <CompletedChallenges />
 
-            <Countdown />
-          </div>
+                <Countdown />
+              </div>
 
-          <div></div>
-        </section>
+              <div></div>
+            </section>
+          </>
+        )}
+
+        {!session && <p>Você precisa logar!</p> }
       </Container>
     </>
   )
