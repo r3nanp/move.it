@@ -2,7 +2,6 @@ import Head from 'next/head'
 
 interface SEOProps {
   title: string
-  shouldIndexPage?: boolean
 }
 
 function SEO({ title }: SEOProps) {
@@ -12,17 +11,11 @@ function SEO({ title }: SEOProps) {
 
       <link rel="shortcut icon" href="/favicon.png" />
       <meta name="keywords" content="r3nanp, exercise" />
-      <meta
-        name="description"
-        content="A app to make you move."
-      />
+      <meta name="description" content="A app to make you move." />
 
       <meta property="og:site_name" content="Move It" />
       <meta property="og:title" content="Move It" />
-      <meta
-        property="og:description"
-        content="A app to make you move."
-      />
+      <meta property="og:description" content="A app to make you move." />
       <meta property="og:image" content="/thumb.svg" />
       <meta name="twiiter:image:alt" content="Thumbnail" />
       <meta property="og:image:type" content="image/svg" />
@@ -32,10 +25,7 @@ function SEO({ title }: SEOProps) {
       <meta name="twitter:image" content="/thumb.svg" />
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content="Move It" />
-      <meta
-        name="twitter:description"
-        content="A app to make you move."
-      />
+      <meta name="twitter:description" content="A app to make you move." />
       <meta name="twiiter:create" content="r3nanp" />
     </Head>
   )
