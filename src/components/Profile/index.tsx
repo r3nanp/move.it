@@ -3,11 +3,10 @@ import { Container, LeftContainer } from './styles'
 
 interface ProfileProps {
   imageUrl: string
-  name?: string
-  children?: React.ReactNode
+  name: string
 }
 
-export function Profile({ imageUrl }: ProfileProps) {
+export function Profile({ imageUrl, name }: ProfileProps) {
   return (
     <LeftContainer>
       <Image
@@ -18,7 +17,7 @@ export function Profile({ imageUrl }: ProfileProps) {
         className="image"
       />
       <div>
-        <strong>Renan Pereira</strong>
+        <strong>{name}</strong>
         <p>
           <img src="icons/level.svg" alt="Level logo" id="level" />
           Level 1
