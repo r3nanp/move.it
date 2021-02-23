@@ -5,15 +5,19 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "deploy": "vercel --prod"
   },
   "dependencies": {
     "next": "10.0.7",
+    "next-auth": "^3.5.0",
     "react": "17.0.1",
     "react-dom": "17.0.1",
+    "react-icons": "^4.2.0",
     "styled-components": "^5.2.1"
   },
   "devDependencies": {
+    "@types/next-auth": "^3.1.24",
     "@types/node": "^14.14.31",
     "@types/react": "^17.0.2",
     "@types/styled-components": "^5.1.7",
