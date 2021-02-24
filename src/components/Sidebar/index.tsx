@@ -1,23 +1,28 @@
 import Image from 'next/image'
-import { Bar, Container, HomeIcon, AwardIcon } from './styles'
+import { FormEvent } from 'react'
+import { Bar, ExitIcon, HomeIcon, AwardIcon } from './styles'
 
-export function Sidebar() {
+interface SidebarProps {
+  handleExit: (event: FormEvent) => void
+}
+
+export function Sidebar({ handleExit }: SidebarProps) {
   return (
-    <Container>
+    <>
       <Bar>
         <Image
           src="/favicon@3x.png"
-          width={100}
-          height={100}
+          width={200}
+          height={200}
           alt="Move it logo"
           className="image"
         />
         <div className="icons-container">
           <HomeIcon />
-
           <AwardIcon />
+          <ExitIcon onClick={handleExit} />
         </div>
       </Bar>
-    </Container>
+    </>
   )
 }
