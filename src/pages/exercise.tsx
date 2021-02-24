@@ -9,6 +9,7 @@ import { Sidebar } from '../components/Sidebar'
 import { Profile } from '../components/Profile'
 import { CompletedChallenges } from '../components/CompletedChallenges'
 import { Countdown } from '../components/Countdown'
+import { ChallengeBox } from '../components/ChallengeBox'
 
 export default function Exercise() {
   const [session, loading] = useSession()
@@ -24,11 +25,11 @@ export default function Exercise() {
 
   return (
     <>
-      <Sidebar />
+      <Sidebar handleExit={handleLogout} />
       <Container>
         <SEO title="Move.it | Exercise" />
 
-        {loading && <p>Carregando..</p> }
+        {loading && <p>Carregando..</p>}
 
         {session && (
           <>
@@ -44,12 +45,14 @@ export default function Exercise() {
                 <Countdown />
               </div>
 
-              <div></div>
+              <div>
+                <ChallengeBox />
+              </div>
             </section>
           </>
         )}
 
-        {!session && <p>Você precisa logar!</p> }
+        {!session && <p>Você precisa logar!</p>}
       </Container>
     </>
   )
