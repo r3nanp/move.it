@@ -38,7 +38,11 @@ export const Container = styled.section`
   }
 `
 
-export const StartCountdown = styled.button`
+interface IsActiveProps {
+  isActive: boolean
+}
+
+export const StartCountdown = styled.button<IsActiveProps>`
   width: 100%;
   height: 5rem;
 
@@ -50,14 +54,20 @@ export const StartCountdown = styled.button`
   border-radius: 5px;
 
   color: var(--white);
-  background: var(--blue);
+  background: ${props => (props.isActive ? 'var(--red)' : 'var(--blue)')};
 
   font-size: 1.25rem;
   font-weight: 600;
 
   transition: all 0.2s;
 
-  &:hover {
-    background: var(--blue-dark);
+  &:disabled {
+    background: var(--blue);
+    cursor: not-allowed;
+  }
+
+  &:not(:disabled):hover {
+    background: ${props =>
+      props.isActive ? 'var(--red-dark)' : 'var(--blue-dark)'};
   }
 `
