@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import { Container, LeftContainer } from './styles'
+import { Container } from './styles'
 
 interface ProfileProps {
   imageUrl: string
@@ -8,21 +8,21 @@ interface ProfileProps {
 
 export function Profile({ imageUrl, name }: ProfileProps) {
   return (
-    <LeftContainer>
+    <Container>
       <Image
         src={imageUrl}
-        width={100}
-        height={100}
+        width={88}
+        height={88}
         alt="Profile image"
         className="image"
       />
       <div>
         <strong>{name}</strong>
         <p>
-          <img src="icons/level.svg" alt="Level logo" id="level" />
+          <img src="/icons/level.svg" alt="Level logo" />
           Level 1
         </p>
       </div>
-    </LeftContainer>
+    </Container>
   )
 }

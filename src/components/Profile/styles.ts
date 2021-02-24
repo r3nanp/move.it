@@ -1,13 +1,13 @@
 import styled from 'styled-components'
 
-export const Container = styled.section``
-
-export const LeftContainer = styled.div`
+export const Container = styled.div`
   display: flex;
   align-items: center;
 
   .image {
     border-radius: 50%;
+    width: 5.5rem;
+    height: 5.5rem;
   }
 
   div {
@@ -23,7 +23,7 @@ export const LeftContainer = styled.div`
       font-size: 1rem;
       margin-top: 0.5rem;
 
-      > #level {
+      > img {
         margin-right: 0.5rem;
       }
     }
