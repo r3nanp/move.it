@@ -9,5 +9,6 @@ export const theme = {
   'gray-line': '#dcdde0',
   'text-highlight': '#b3b9ff',
   'blue-dark': '#4953b8',
-  'blue-twitter': '#2aa9e0'
+  'blue-twitter': '#2aa9e0',
+  'red-dark': '#C81A41'
 }
