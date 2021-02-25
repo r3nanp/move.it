@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { AiOutlineGithub } from 'react-icons/ai'
 
 export const Container = styled.main`
   height: 100vh;
@@ -22,41 +23,63 @@ export const Container = styled.main`
 `
 
 export const LoginWrapper = styled.section`
+  flex: 1;
+
   background: var(--blue);
   height: 100vh;
 
-  > div {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8rem;
+  align-content: center;
+
+  .image-container {
     display: flex;
     align-items: center;
-    height: 100%;
+    justify-content: center;
+  }
 
-    position: relative;
+  .left-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
-    > div {
+    > h2 {
+      font-family: Rajdhani, sans-serif;
+      font-size: 2.5rem;
+      font-weight: 600;
+      color: var(--white);
+    }
+
+    > button {
+      width: 50%;
+      background: var(--green);
+      color: var(--white);
+
+      font-size: 1.5rem;
+      margin-top: 2rem;
+
+      height: 4rem;
       display: flex;
-      flex-direction: column;
-      text-align: center;
+      align-items: center;
+      justify-content: center;
 
-      > h2 {
-        color: var(--white);
-        font-size: 2rem;
-      }
+      border: 0;
+      border-radius: 5px;
 
-      width: 25%;
-      position: absolute;
-      right: 60px;
+      transition: filter 0.2s;
 
-      button {
-        width: 100%;
-        height: 5rem;
-
-        margin-top: 2rem;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border: 0;
-        border-radius: 5px;
+      &:hover {
+        filter: brightness(0.9);
       }
     }
   }
+`
+
+export const GithubIcon = styled(AiOutlineGithub)`
+  width: 30px;
+  height: 30px;
+  color: var(--white);
+
+  margin-right: 15px;
 `
