@@ -3,8 +3,15 @@ import NextAuth from 'next-auth'
 import Providers from 'next-auth/providers'
 
 const options = {
-  pages: {
-    signOut: '/'
+  site: process.env.NEXT_URL,
+  callbacks: {
+    signIn: async (user, session) => {
+      session.id = user.id
+      return Promise.resolve(session)
+    },
+    redirect: async (url: string, baseUrl: string) => {
+      return Promise.resolve('http://localhost:3000/exercise')
+    }
   },
   providers: [
     Providers.GitHub({
