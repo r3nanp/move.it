@@ -1,4 +1,6 @@
 import Image from 'next/image'
+import { useContext } from 'react'
+import { ChallengesContext } from '../../contexts/ChallengesContext'
 import { Container } from './styles'
 
 interface ProfileProps {
@@ -7,6 +9,8 @@ interface ProfileProps {
 }
 
 export function Profile({ imageUrl, name }: ProfileProps) {
+  const { level } = useContext(ChallengesContext)
+
   return (
     <Container>
       <Image
@@ -20,7 +24,7 @@ export function Profile({ imageUrl, name }: ProfileProps) {
         <strong>{name}</strong>
         <p>
           <img src="/icons/level.svg" alt="Level logo" />
-          Level 1
+          Level {level}
         </p>
       </div>
     </Container>
