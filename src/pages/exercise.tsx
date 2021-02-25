@@ -1,6 +1,7 @@
-import { useCallback, FormEvent } from 'react'
-import { useRouter } from 'next/router'
-import { signOut, useSession } from 'next-auth/client'
+import { useContext } from 'react'
+import { useSession } from 'next-auth/client'
+import { CountdownProvider } from '../contexts/CountdownContext'
+import { AuthContext } from '../contexts/AuthContext'
 
 import { Container } from '../components/Container'
 import { ExperienceBar } from '../components/ExperienceBar'
@@ -12,20 +13,13 @@ import { Countdown } from '../components/Countdown'
 import { ChallengeBox } from '../components/ChallengeBox'
 
 export default function Exercise() {
+  const { signOut } = useContext(AuthContext)
+
   const [session, loading] = useSession()
-
-  const router = useRouter()
-
-  const handleLogout = useCallback((event: FormEvent) => {
-    event.preventDefault()
-
-    signOut()
-    router.push('/')
-  }, [])
 
   return (
     <>
-      <Sidebar handleExit={handleLogout} />
+      <Sidebar handleExit={signOut} />
       <Container>
         <SEO title="Move.it | Exercise" />
 
@@ -34,21 +28,21 @@ export default function Exercise() {
         {session && (
           <>
             <ExperienceBar />
-            <section>
-              <div>
-                <Profile
-                  imageUrl={session.user.image}
-                  name={session.user.name}
-                />
-                <CompletedChallenges />
-
-                <Countdown />
-              </div>
-
-              <div>
-                <ChallengeBox />
-              </div>
-            </section>
+            <CountdownProvider>
+              <section>
+                <div>
+                  <Profile
+                    imageUrl={session.user.image}
+                    name={session.user.name}
+                  />
+                  <CompletedChallenges />
+                  <Countdown />
+                </div>
+                <div>
+                  <ChallengeBox />
+                </div>
+              </section>
+            </CountdownProvider>
           </>
         )}
 
