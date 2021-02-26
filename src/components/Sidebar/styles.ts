@@ -28,9 +28,6 @@ export const Bar = styled.aside`
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  img {
-    background: var(--blue);
-  }
 
   .icons-container {
     display: flex;
