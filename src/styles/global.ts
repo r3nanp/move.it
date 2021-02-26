@@ -14,7 +14,6 @@ export default createGlobalStyle`
   }
 
   body, textarea, input, button {
-    outline: 0;
     font: 400 1rem Inter, system-ui, sans-serif;
   }
 
