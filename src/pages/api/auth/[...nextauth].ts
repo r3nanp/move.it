@@ -10,7 +10,7 @@ const options = {
       return Promise.resolve(session)
     },
     redirect: async (url: string, baseUrl: string) => {
-      return Promise.resolve('http://localhost:3000/exercise')
+      return Promise.resolve(`${process.env.PRODUCTION_URL}`)
     }
   },
   providers: [
