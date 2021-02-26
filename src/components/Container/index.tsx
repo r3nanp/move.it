@@ -10,6 +10,11 @@ export const Container = styled.main`
   display: flex;
   flex-direction: column;
 
+  @media screen and (max-width: 768px) {
+    margin-left: 3.5rem;
+    width: 100%;
+  }
+
   > section {
     flex: 1;
 
@@ -19,6 +24,14 @@ export const Container = styled.main`
     align-content: center;
 
     padding-top: 2rem;
+
+    @media screen and (max-width: 768px) {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin: 1rem;
+    }
   }
 `
 
@@ -34,9 +47,12 @@ export const LoginWrapper = styled.section`
   align-content: center;
 
   .image-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    background-image: url('/logo-gradient.png') no-repeat center;
+    background-size: contain;
+
+    @media screen and (max-width: 768px) {
+      display: none;
+    }
   }
 
   .left-container {
@@ -90,6 +106,13 @@ export const LoginWrapper = styled.section`
         }
       }
     }
+  }
+
+  @media screen and (max-width: 768px) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
   }
 `
 
