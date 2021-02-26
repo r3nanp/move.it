@@ -42,35 +42,52 @@ export const LoginWrapper = styled.section`
   .left-container {
     display: flex;
     flex-direction: column;
-    align-items: center;
 
     > h2 {
+      text-align: left;
       font-family: Rajdhani, sans-serif;
       font-size: 2.5rem;
       font-weight: 600;
       color: var(--white);
+
+      margin-bottom: 1rem;
     }
 
-    > button {
-      width: 50%;
-      background: var(--green);
-      color: var(--white);
-
-      font-size: 1.5rem;
-      margin-top: 2rem;
-
-      height: 4rem;
+    > p {
       display: flex;
       align-items: center;
-      justify-content: center;
 
-      border: 0;
-      border-radius: 5px;
+      font-size: 1rem;
+      color: var(--text-highlight);
+      line-height: 1.4;
+    }
 
-      transition: filter 0.2s;
+    > div {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
 
-      &:hover {
-        filter: brightness(0.9);
+      button {
+        width: 60%;
+        background: var(--green);
+        color: var(--white);
+
+        font-size: 1.5rem;
+        margin-top: 2rem;
+
+        height: 4rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        border: 0;
+        border-radius: 5px;
+
+        transition: filter 0.2s;
+
+        &:hover {
+          filter: brightness(0.9);
+        }
       }
     }
   }
@@ -79,7 +96,7 @@ export const LoginWrapper = styled.section`
 export const GithubIcon = styled(AiOutlineGithub)`
   width: 30px;
   height: 30px;
-  color: var(--white);
+  color: var(--text-highlight);
 
   margin-right: 15px;
 `
