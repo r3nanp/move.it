@@ -9,6 +9,7 @@
     "deploy": "vercel --prod"
   },
   "dependencies": {
+    "js-cookie": "^2.2.1",
     "next": "10.0.7",
     "next-auth": "^3.5.0",
     "react": "17.0.1",
@@ -17,6 +18,7 @@
     "styled-components": "^5.2.1"
   },
   "devDependencies": {
+    "@types/js-cookie": "^2.2.6",
     "@types/next-auth": "^3.1.24",
     "@types/node": "^14.14.31",
     "@types/react": "^17.0.2",
