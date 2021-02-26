@@ -20,6 +20,9 @@ const iconsCss = css`
 
 export const Bar = styled.aside`
   position: fixed;
+  z-index: 1;
+  left: 0;
+
   height: 100%;
   width: 5rem;
   padding: 0.7rem;
@@ -33,6 +36,11 @@ export const Bar = styled.aside`
     display: flex;
     flex-direction: column;
     align-items: center;
+  }
+
+  @media screen and (max-width: 768px) {
+    width: 4rem;
+
   }
 `
 
