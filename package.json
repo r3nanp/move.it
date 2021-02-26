@@ -2,6 +2,12 @@
   "name": "move.it",
   "version": "0.1.0",
   "private": true,
+  "author": "Renan Pereira <renanmol87@gmail.com>",
+  "keywords": [
+    "r3nanp",
+    "exercise",
+    "move"
+  ],
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -23,10 +29,17 @@
     "@types/node": "^14.14.31",
     "@types/react": "^17.0.2",
     "@types/styled-components": "^5.1.7",
+    "@typescript-eslint/eslint-plugin": "^4.15.2",
+    "@typescript-eslint/parser": "^4.15.2",
     "babel-plugin-styled-components": "^1.12.0",
     "eslint": "^7.20.0",
     "eslint-config-prettier": "^8.0.0",
+    "eslint-config-standard": "^16.0.2",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-prettier": "^3.3.1",
+    "eslint-plugin-promise": "^4.3.1",
+    "eslint-plugin-react": "^7.22.0",
     "prettier": "^2.2.1",
     "typescript": "^4.1.5"
   }
