@@ -1,5 +1,5 @@
 <p align="center">
-<img src="./.github/favicon.png" />
+<img src="./public/logo-full.svg" />
 </p>
 
 <div align="center">
@@ -10,7 +10,7 @@
 
 <div align="center">
 
-### A app to make you move! Written in **Next.js**
+### A app to make you move! Written in Next.js
 
 </div>
 
@@ -34,6 +34,7 @@
 - styled-components
 - React icons
 - Next Auth
+- js-cookie
 
 ### How to run the app locally 🤔
 
