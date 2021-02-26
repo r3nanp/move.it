@@ -32,6 +32,8 @@
 - Next.js
 - Typescript
 - styled-components
+- React icons
+- Next Auth
 
 ### How to run the app locally 🤔
 
