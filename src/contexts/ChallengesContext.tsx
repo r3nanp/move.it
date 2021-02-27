@@ -10,7 +10,7 @@ interface ChallengeProps {
   amount: number
 }
 
-interface ChallengesContextData {
+export interface ChallengesContextData {
   challengesCompleted: number
   currentExperience: number
   level: number

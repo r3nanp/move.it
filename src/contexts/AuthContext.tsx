@@ -5,7 +5,7 @@ import {
   signIn as handleLogin
 } from 'next-auth/client'
 
-interface AuthContextData {
+export interface AuthContextData {
   signIn: (event: FormEvent) => void
   signOut: (event: FormEvent) => void
 }
@@ -17,7 +17,10 @@ interface AuthProviderProps {
 
 export const AuthContext = createContext({} as AuthContextData)
 
-export function AuthProvider({ pageProps, children }: AuthProviderProps) {
+export function AuthProvider({
+  pageProps,
+  children
+}: AuthProviderProps): JSX.Element {
   const signIn = useCallback((event: FormEvent) => {
     event.preventDefault()
     handleLogin('github', { callbackUrl: process.env.DEV_URL })
