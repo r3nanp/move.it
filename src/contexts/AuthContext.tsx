@@ -12,6 +12,7 @@ export interface AuthContextData {
 
 interface AuthProviderProps {
   children: React.ReactNode
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   pageProps: any
 }
 
