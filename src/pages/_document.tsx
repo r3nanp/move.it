@@ -49,11 +49,7 @@ export default class MyDocument extends Document {
           />
           <link rel="manifest" href="manifest.json" />
 
-          <link
-            rel="apple-touch-icon"
-            sizes="192x192"
-            href="/favicon@3x.png"
-          />
+          <link rel="apple-touch-icon" sizes="192x192" href="/favicon@3x.png" />
         </Head>
         <body>
           <Main />

@@ -1,3 +1,4 @@
+/* eslint-disable no-new */
 import { createContext, useEffect, useState } from 'react'
 import Cookies from 'js-cookie'
 import { LevelUpModal } from '../components/LevelUpModal'
@@ -10,7 +11,7 @@ interface ChallengeProps {
   amount: number
 }
 
-interface ChallengesContextData {
+export interface ChallengesContextData {
   challengesCompleted: number
   currentExperience: number
   level: number
@@ -32,7 +33,10 @@ interface ProviderProps {
 
 export const ChallengesContext = createContext({} as ChallengesContextData)
 
-export function ChallengesProvider({ children, ...rest }: ProviderProps) {
+export function ChallengesProvider({
+  children,
+  ...rest
+}: ProviderProps): JSX.Element {
   const [level, setLevel] = useState(rest.level ?? 1)
   const [currentExperience, setCurrentExperience] = useState(
     rest.currentExperience ?? 0

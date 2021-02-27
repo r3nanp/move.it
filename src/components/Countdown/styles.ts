@@ -62,7 +62,8 @@ export const StartCountdown = styled.button<IsActiveProps>`
   transition: all 0.2s;
 
   &:disabled {
-    background: var(--blue);
+    background: var(--white);
+    color: var(--text);
     cursor: not-allowed;
   }
 

@@ -7,7 +7,7 @@ interface SidebarProps {
   handleExit: (event: FormEvent) => void
 }
 
-export function Sidebar({ handleExit }: SidebarProps) {
+export function Sidebar({ handleExit }: SidebarProps): JSX.Element {
   const { push } = useRouter()
 
   function handleGoExercise() {

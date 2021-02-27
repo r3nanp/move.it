@@ -1,6 +1,5 @@
-import { useContext } from 'react'
-import { ChallengesContext } from '../../contexts/ChallengesContext'
-import { CountdownContext } from '../../contexts/CountdownContext'
+import { useChallenges } from '../../hooks/useChallenges'
+import { useCountdown } from '../../hooks/useCountdown'
 
 import {
   Button,
@@ -9,12 +8,10 @@ import {
   Container
 } from './styles'
 
-export function ChallengeBox() {
-  const { activeChallenge, resetChallenge, completeChallenge } = useContext(
-    ChallengesContext
-  )
+export function ChallengeBox(): JSX.Element {
+  const { activeChallenge, resetChallenge, completeChallenge } = useChallenges()
 
-  const { resetCountdown } = useContext(CountdownContext)
+  const { resetCountdown } = useCountdown()
 
   const handleChallengeSucceded = () => {
     completeChallenge()

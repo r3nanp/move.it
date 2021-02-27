@@ -1,8 +1,7 @@
-import { useContext } from 'react'
-import { CountdownContext } from '../../contexts/CountdownContext'
+import { useCountdown } from '../../hooks/useCountdown'
 import { Container, StartCountdown } from './styles'
 
-export function Countdown() {
+export function Countdown(): JSX.Element {
   const {
     minutes,
     seconds,
@@ -10,7 +9,7 @@ export function Countdown() {
     isActive,
     startCountdown,
     resetCountdown
-  } = useContext(CountdownContext)
+  } = useCountdown()
 
   const [minuteLeft, minuteRight] = String(minutes).padStart(2, '0').split('')
   const [secondsLeft, secondsRight] = String(seconds).padStart(2, '0').split('')
@@ -32,6 +31,7 @@ export function Countdown() {
       {hasFinished ? (
         <StartCountdown isActive disabled>
           Ciclo encerrado!
+          <img src="icons/check_circle" alt="Ciclo encerrado" />
         </StartCountdown>
       ) : (
         <>

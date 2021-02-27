@@ -6,7 +6,7 @@ import { AuthProvider } from '../contexts/AuthContext'
 import { theme } from '../styles/theme'
 import GlobalStyles from '../styles/global'
 
-function MyApp({ Component, pageProps }: AppProps) {
+function MyApp({ Component, pageProps }: AppProps): JSX.Element {
   useEffect(() => {
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker

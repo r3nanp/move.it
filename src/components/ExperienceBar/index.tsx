@@ -1,11 +1,8 @@
-import { useContext } from 'react'
-import { ChallengesContext } from '../../contexts/ChallengesContext'
+import { useChallenges } from '../../hooks/useChallenges'
 import { Header } from './styles'
 
-function ExperienceBar() {
-  const { currentExperience, experienceToNextLevel } = useContext(
-    ChallengesContext
-  )
+export function ExperienceBar(): JSX.Element {
+  const { currentExperience, experienceToNextLevel } = useChallenges()
 
   const percentToNextLevel =
     Math.round(currentExperience * 100) / experienceToNextLevel
@@ -27,5 +24,3 @@ function ExperienceBar() {
     </Header>
   )
 }
-
-export { ExperienceBar }
