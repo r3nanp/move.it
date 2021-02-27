@@ -8,9 +8,7 @@
   "extends": [
     "plugin:react/recommended",
     "standard",
-    "plugin:@typescript-eslint/recommended",
-    "prettier/react",
-    "prettier/standard"
+    "plugin:@typescript-eslint/recommended"
   ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
@@ -25,8 +23,10 @@
     "prettier/prettier": "error",
     "react/prop-types": "off",
     "react/react-in-jsx-scope": "off",
+    "space-before-function-paren": "off",
     "semi": "off",
     "camelcase": "off",
-    "comma-dangle": "off"
+    "comma-dangle": "off",
+    "multiline-ternary": "off"
   }
 }
