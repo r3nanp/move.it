@@ -2,7 +2,7 @@ import { useContext } from 'react'
 import { CountdownContext } from '../../contexts/CountdownContext'
 import { Container, StartCountdown } from './styles'
 
-export function Countdown() {
+export function Countdown(): JSX.Element {
   const {
     minutes,
     seconds,
@@ -32,6 +32,7 @@ export function Countdown() {
       {hasFinished ? (
         <StartCountdown isActive disabled>
           Ciclo encerrado!
+          <img src="icons/check_circle" alt="Ciclo encerrado" />
         </StartCountdown>
       ) : (
         <>

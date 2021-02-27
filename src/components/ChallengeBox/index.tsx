@@ -9,7 +9,7 @@ import {
   Container
 } from './styles'
 
-export function ChallengeBox() {
+export function ChallengeBox(): JSX.Element {
   const { activeChallenge, resetChallenge, completeChallenge } = useContext(
     ChallengesContext
   )

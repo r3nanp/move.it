@@ -2,7 +2,7 @@ import { useContext } from 'react'
 import { ChallengesContext } from '../../contexts/ChallengesContext'
 import { Header } from './styles'
 
-function ExperienceBar() {
+export function ExperienceBar(): JSX.Element {
   const { currentExperience, experienceToNextLevel } = useContext(
     ChallengesContext
   )
@@ -27,5 +27,3 @@ function ExperienceBar() {
     </Header>
   )
 }
-
-export { ExperienceBar }

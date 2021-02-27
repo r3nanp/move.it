@@ -8,7 +8,7 @@ interface ProfileProps {
   name: string
 }
 
-export function Profile({ imageUrl, name }: ProfileProps) {
+export function Profile({ imageUrl, name }: ProfileProps): JSX.Element {
   const { level } = useContext(ChallengesContext)
 
   return (
