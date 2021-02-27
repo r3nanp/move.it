@@ -3,7 +3,7 @@ import { SEO } from '../components/SEO/SEO'
 import { Sidebar } from '../components/Sidebar'
 import { AuthContext } from '../contexts/AuthContext'
 
-export default function Leaderboard() {
+export default function Leaderboard(): JSX.Element {
   const { signOut } = useContext(AuthContext)
 
   return (

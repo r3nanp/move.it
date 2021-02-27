@@ -21,7 +21,7 @@ interface ExerciseProps {
   challengesCompleted: number
 }
 
-export default function Exercise(props: ExerciseProps) {
+export default function Exercise(props: ExerciseProps): JSX.Element {
   const { level, currentExperience, challengesCompleted } = props
 
   const { signOut } = useContext(AuthContext)

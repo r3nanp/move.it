@@ -1,11 +1,11 @@
-import Image from 'next/image'
 import { useContext } from 'react'
+import Image from 'next/image'
 import { SEO } from '../components/SEO/SEO'
 import { AuthContext } from '../contexts/AuthContext'
 
 import { LoginWrapper, GithubIcon } from '../components/Container'
 
-export default function Home() {
+export default function Home(): JSX.Element {
   const { signIn } = useContext(AuthContext)
 
   return (
