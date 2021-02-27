@@ -1,9 +1,8 @@
-import { useContext } from 'react'
-import { ChallengesContext } from '../../contexts/ChallengesContext'
+import { useChallenges } from '../../hooks/useChallenges'
 import { Container } from './styles'
 
 export function CompletedChallenges(): JSX.Element {
-  const { challengesCompleted } = useContext(ChallengesContext)
+  const { challengesCompleted } = useChallenges()
 
   return (
     <Container>

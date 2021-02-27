@@ -1,10 +1,9 @@
-import { useContext } from 'react'
 import { SEO } from '../components/SEO/SEO'
 import { Sidebar } from '../components/Sidebar'
-import { AuthContext } from '../contexts/AuthContext'
+import { useAuth } from '../hooks/useAuth'
 
 export default function Leaderboard(): JSX.Element {
-  const { signOut } = useContext(AuthContext)
+  const { signOut } = useAuth()
 
   return (
     <>

@@ -1,10 +1,9 @@
-import { useContext } from 'react'
 import { GetServerSideProps, GetServerSidePropsContext } from 'next'
+import { useAuth } from '../hooks/useAuth'
 
 import { useSession } from 'next-auth/client'
 import { CountdownProvider } from '../contexts/CountdownContext'
 import { ChallengesProvider } from '../contexts/ChallengesContext'
-import { AuthContext } from '../contexts/AuthContext'
 
 import { Container } from '../components/Container'
 import { ExperienceBar } from '../components/ExperienceBar'
@@ -24,7 +23,7 @@ interface ExerciseProps {
 export default function Exercise(props: ExerciseProps): JSX.Element {
   const { level, currentExperience, challengesCompleted } = props
 
-  const { signOut } = useContext(AuthContext)
+  const { signOut } = useAuth()
 
   const [session, loading] = useSession()
 

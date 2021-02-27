@@ -1,6 +1,5 @@
 import Image from 'next/image'
-import { useContext } from 'react'
-import { ChallengesContext } from '../../contexts/ChallengesContext'
+import { useChallenges } from '../../hooks/useChallenges'
 import { Container } from './styles'
 
 interface ProfileProps {
@@ -9,7 +8,7 @@ interface ProfileProps {
 }
 
 export function Profile({ imageUrl, name }: ProfileProps): JSX.Element {
-  const { level } = useContext(ChallengesContext)
+  const { level } = useChallenges()
 
   return (
     <Container>
