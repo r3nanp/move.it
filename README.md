@@ -30,10 +30,9 @@
 - Next Auth
 - js-cookie
 
-
 # Contributing 🎉
 
-<a href="CONTRIBUTING.md">Check this step by step</a>
+[Check this step by step](CONTRIBUTING.md)
 
 <br />
 
@@ -57,7 +56,17 @@ yarn or npm install
 yarn dev or npm run dev
 ```
 
+# Layout
+
+<img src="./.github/screenshot.png">
+
+
+## [Layout](https://www.figma.com/file/KNXg7ZZO8VY59RZwZqC0n5/Move.it-2.0-(Copy)?node-id=149721%3A851)
+
+<br />
+
 # License 📚
+
 [MIT license](LICENSE).
 
 Made by [Renan Pereira](https://github.com/r3nanp)
