@@ -4,13 +4,7 @@
 
 <div align="center">
 
-# Move It
-
-</div>
-
-<div align="center">
-
-### A app to make you move! Written in Next.js
+> A app to make you move! Written in Next.js
 
 </div>
 
@@ -27,7 +21,7 @@
 
 ---
 
-## Technologies used 🛠
+# Technologies used 🛠
 
 - Next.js
 - Typescript
@@ -36,7 +30,14 @@
 - Next Auth
 - js-cookie
 
-### How to run the app locally 🤔
+
+# Contributing 🎉
+
+<a href="CONTRIBUTING.md">Check this step by step</a>
+
+<br />
+
+# How to run 🤔
 
 ```
 # Clone repository
@@ -55,3 +56,10 @@ yarn or npm install
 
 yarn dev or npm run dev
 ```
+
+# License 📚
+[MIT license](LICENSE).
+
+Made by [Renan Pereira](https://github.com/r3nanp)
+
+Give a ⭐️!
