@@ -4,16 +4,23 @@
   "private": true,
   "author": "Renan Pereira <renanmol87@gmail.com>",
   "keywords": [
-    "r3nanp",
     "exercise",
     "move"
   ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/r3nanp/move.it.git"
+  },
+  "bugs": {
+    "url": "https://github.com/r3nanp/move.it/issues"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "deploy": "vercel --prod",
-    "lint": "eslint --ext .tsx src/"
+    "lint": "eslint src/ --ext ts,tsx"
   },
   "dependencies": {
     "js-cookie": "^2.2.1",
@@ -25,6 +32,8 @@
     "styled-components": "^5.2.1"
   },
   "devDependencies": {
+    "@commitlint/cli": "^12.0.1",
+    "@commitlint/config-conventional": "^12.0.1",
     "@types/js-cookie": "^2.2.6",
     "@types/next-auth": "^3.1.24",
     "@types/node": "^14.14.31",
@@ -41,6 +50,8 @@
     "eslint-plugin-prettier": "^3.3.1",
     "eslint-plugin-promise": "^4.3.1",
     "eslint-plugin-react": "^7.22.0",
+    "husky": "^5.1.2",
+    "lint-staged": "^10.5.4",
     "prettier": "^2.2.1",
     "typescript": "^4.1.5"
   }
