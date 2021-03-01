@@ -25,10 +25,10 @@ export const Container = styled.section`
     }
 
     span:first-child {
-      border-right: 1px solid #f0f1f3;
+      border-right: 1px solid var(--border);
     }
     span:last-child {
-      border-left: 1px solid #f0f1f3;
+      border-left: 1px solid var(--border);
     }
   }
 
