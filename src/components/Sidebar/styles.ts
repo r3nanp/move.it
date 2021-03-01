@@ -26,11 +26,17 @@ export const Bar = styled.aside`
   height: 100%;
   width: 5rem;
   padding: 0.7rem;
-  background: var(--white);
+  background: var(--bg);
+  box-shadow: 0 0 60px rgba(0, 0, 0, 0.5);
+
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+
+  > .image-container {
+    cursor: pointer;
+  }
 
   .icons-container {
     display: flex;
@@ -40,7 +46,6 @@ export const Bar = styled.aside`
 
   @media screen and (max-width: 768px) {
     width: 4rem;
-
   }
 `
 
