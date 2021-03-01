@@ -27,6 +27,7 @@
     "semi": "off",
     "camelcase": "off",
     "comma-dangle": "off",
-    "multiline-ternary": "off"
+    "multiline-ternary": "off",
+    "@typescript-eslint/no-empty-interface": "off"
   }
 }
