@@ -1,26 +1,30 @@
 import { NextApiRequest, NextApiResponse } from 'next'
-import NextAuth from 'next-auth'
+import NextAuth, { InitOptions, User } from 'next-auth'
 import Providers from 'next-auth/providers'
 
-const options = {
-  site: process.env.NEXT_URL,
-  callbacks: {
-    signIn: async (user, session) => {
-      session.id = user.id
-      return Promise.resolve(session)
-    },
-    redirect: async (url: string, baseUrl: string) => {
-      return Promise.resolve(`${process.env.PRODUCTION_URL}`)
-    }
-  },
+const options: InitOptions = {
   providers: [
     Providers.GitHub({
       clientId: process.env.GITHUB_CLIENT_ID,
       clientSecret: process.env.GITHUB_CLIENT_SECRET
     })
-  ]
+  ],
+  callbacks: {
+    session: async (session, user: User) => {
+      return Promise.resolve({
+        ...session,
+        user
+      })
+    },
+    redirect: async () => {
+      return Promise.resolve(`${process.env.PRODUCTION_URL}`)
+    }
+  }
 }
 
-export default (request: NextApiRequest, response: NextApiResponse) => {
-  NextAuth(request, response, options)
+export default (
+  request: NextApiRequest,
+  response: NextApiResponse
+): Promise<void> => {
+  return NextAuth(request, response, options)
 }
