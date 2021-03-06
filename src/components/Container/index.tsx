@@ -1,5 +1,12 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import { AiOutlineGithub } from 'react-icons/ai'
+
+const contentCss = css`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`
 
 export const Container = styled.main`
   height: 100vh;
@@ -26,10 +33,7 @@ export const Container = styled.main`
     padding-top: 2rem;
 
     @media screen and (max-width: 768px) {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
+      ${contentCss}
       margin: 1rem;
     }
   }
@@ -38,7 +42,7 @@ export const Container = styled.main`
 export const LoginWrapper = styled.section`
   flex: 1;
 
-  background: var(--blue);
+  background: #5965e0;
   height: 100vh;
 
   display: grid;
@@ -64,7 +68,7 @@ export const LoginWrapper = styled.section`
       font-family: Rajdhani, sans-serif;
       font-size: 2.5rem;
       font-weight: 600;
-      color: var(--white);
+      color: #fff;
 
       margin-bottom: 1rem;
     }
@@ -74,7 +78,7 @@ export const LoginWrapper = styled.section`
       align-items: center;
 
       font-size: 1rem;
-      color: var(--text-highlight);
+      color: #b3b9ff;
       line-height: 1.4;
     }
 
@@ -85,8 +89,8 @@ export const LoginWrapper = styled.section`
 
       button {
         width: 60%;
-        background: var(--green);
-        color: var(--white);
+        background: #4cd62b;
+        color: #fff;
 
         font-size: 1.5rem;
         margin-top: 2rem;
@@ -109,17 +113,76 @@ export const LoginWrapper = styled.section`
   }
 
   @media screen and (max-width: 768px) {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    ${contentCss}
   }
 `
 
 export const GithubIcon = styled(AiOutlineGithub)`
   width: 30px;
   height: 30px;
-  color: var(--text-highlight);
+  color: #b3b9ff;
 
   margin-right: 15px;
+`
+
+export const FourOhFourPage = styled.main`
+  flex: 1;
+  height: 100vh;
+  width: 100vw;
+  padding: 0 4rem;
+
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  align-content: center;
+
+  .left-content {
+    ${contentCss}
+  }
+
+  .right-content {
+    ${contentCss}
+
+    max-width: 500px;
+
+    > h1 {
+      font-size: 5rem;
+      color: var(--blue);
+      margin-bottom: 3rem;
+    }
+
+    > span {
+      font: Rajdhani, sans-serif;
+      font-weight: 600;
+      font-size: 2rem;
+      color: var(--blue);
+      text-transform: uppercase;
+
+      margin-bottom: 1rem;
+    }
+
+    > p {
+      font-size: 1.2rem;
+      text-align: justify;
+      line-height: 1.4;
+      letter-spacing: 0.0025em;
+
+      margin-bottom: 1rem;
+    }
+
+    > a {
+      padding: 1.5rem;
+      color: var(--text);
+      border-radius: 5px;
+      background-color: var(--blue);
+      text-transform: uppercase;
+      font-weight: bold;
+
+      box-shadow: 4px 7px 12px 2px rgba(0, 0, 0, 0.72);
+      transition: all 0.3s;
+
+      &:hover {
+        background-color: var(--blue-dark);
+      }
+    }
+  }
 `

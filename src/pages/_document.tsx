@@ -48,6 +48,7 @@ export default class MyDocument extends Document {
             rel="stylesheet"
           />
           <link rel="manifest" href="manifest.json" />
+          <link rel="shortcut icon" href="favicon.png" type="image/png" />
 
           <link rel="apple-touch-icon" sizes="192x192" href="/favicon@3x.png" />
         </Head>

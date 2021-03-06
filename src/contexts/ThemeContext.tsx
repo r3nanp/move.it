@@ -1,13 +1,10 @@
-import { createContext, ReactNode, useState } from 'react'
+import { createContext, ReactNode, useEffect, useState } from 'react'
 import { ThemeProvider as ThemeStyledProvider } from 'styled-components'
 
 import GlobalStyles from '../styles/global'
 import { themes, ThemeName } from '../styles/theme'
 
 export interface ThemeContextData {
-  themeName: ThemeName
-  setThemeName: (newName: ThemeName) => void
-
   switchTheme: () => void
 }
 
@@ -18,15 +15,27 @@ interface ThemeProps {
 export const ThemeContext = createContext({} as ThemeContextData)
 
 export function ThemeProvider({ children }: ThemeProps): JSX.Element {
-  const [themeName, setThemeName] = useState<ThemeName>('light')
-  const currentTheme = themes[themeName]
+  const [theme, setTheme] = useState<ThemeName>('light')
+  const currentTheme = themes[theme]
 
   function switchTheme() {
-    setThemeName(themeName === 'light' ? 'dark' : 'light')
+    setTheme(theme === 'light' ? 'dark' : 'light')
   }
 
+  useEffect(() => {
+    const themeStoraged = localStorage.getItem('theme')
+
+    if (themeStoraged) {
+      setTheme(JSON.parse(themeStoraged))
+    }
+  }, [])
+
+  useEffect(() => {
+    localStorage.setItem('theme', JSON.stringify(theme))
+  }, [theme])
+
   return (
-    <ThemeContext.Provider value={{ switchTheme, themeName, setThemeName }}>
+    <ThemeContext.Provider value={{ switchTheme }}>
       <ThemeStyledProvider theme={currentTheme}>
         <GlobalStyles />
         {children}
