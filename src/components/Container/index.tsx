@@ -171,7 +171,7 @@ export const FourOhFourPage = styled.main`
 
     > a {
       padding: 1.5rem;
-      color: var(--text);
+      color: var(--white);
       border-radius: 5px;
       background-color: var(--blue);
       text-transform: uppercase;

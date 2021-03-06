@@ -10,7 +10,7 @@ export default function FourOhFour(): JSX.Element {
         <title>Página não encontrada</title>
       </Head>
       <section className="left-content">
-        <Image src="/logo-full.svg" width={500} height={500} alt="404" />
+        <Image src="/logo.svg" width={500} height={500} alt="404" />
       </section>
 
       <section className="right-content">
