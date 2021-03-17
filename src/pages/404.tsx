@@ -1,9 +1,11 @@
+import { ReactElement } from 'react'
+
 import Link from 'next/link'
 import Head from 'next/head'
 import Image from 'next/image'
 import { FourOhFourPage } from '../components/Container'
 
-export default function FourOhFour(): JSX.Element {
+export default function FourOhFour(): ReactElement {
   return (
     <FourOhFourPage>
       <Head>

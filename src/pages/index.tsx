@@ -1,10 +1,12 @@
+import { ReactElement } from 'react'
+
 import Image from 'next/image'
-import { SEO } from '../components/SEO/SEO'
 import { useAuth } from '../hooks/useAuth'
 
+import { SEO } from '../components/SEO/SEO'
 import { LoginWrapper, GithubIcon } from '../components/Container'
 
-export default function Home(): JSX.Element {
+export default function Home(): ReactElement {
   const { signIn } = useAuth()
 
   return (

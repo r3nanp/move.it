@@ -6,6 +6,7 @@ import { themes, ThemeName } from '../styles/theme'
 
 export interface ThemeContextData {
   switchTheme: () => void
+  theme: ThemeName
 }
 
 interface ThemeProps {
@@ -23,7 +24,7 @@ export function ThemeProvider({ children }: ThemeProps): JSX.Element {
   }
 
   useEffect(() => {
-    const themeStoraged = localStorage.getItem('theme')
+    const themeStoraged = localStorage.getItem('@MoveIt:theme')
 
     if (themeStoraged) {
       setTheme(JSON.parse(themeStoraged))
@@ -31,11 +32,11 @@ export function ThemeProvider({ children }: ThemeProps): JSX.Element {
   }, [])
 
   useEffect(() => {
-    localStorage.setItem('theme', JSON.stringify(theme))
+    localStorage.setItem('@MoveIt:theme', JSON.stringify(theme))
   }, [theme])
 
   return (
-    <ThemeContext.Provider value={{ switchTheme }}>
+    <ThemeContext.Provider value={{ switchTheme, theme }}>
       <ThemeStyledProvider theme={currentTheme}>
         <GlobalStyles />
         {children}

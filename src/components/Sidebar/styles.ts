@@ -1,17 +1,25 @@
 import styled, { css } from 'styled-components'
-import { FiHome } from 'react-icons/fi'
-import { BiAward } from 'react-icons/bi'
+import { BiHomeAlt, BiMedal, BiMoon, BiSun } from 'react-icons/bi'
 import { ImExit } from 'react-icons/im'
 
 const iconsCss = css`
-  width: 40px;
-  height: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 
-  color: var(--text-highlight);
-  margin: 1rem;
+  width: 2.25rem;
+  height: 2.25rem;
+
+  fill: var(--text);
+  margin: 1.2rem 0;
 
   cursor: pointer;
   transition: all 0.2s;
+
+  &:active {
+    fill: var(--green);
+  }
 
   &:hover {
     opacity: 0.7;
@@ -19,29 +27,20 @@ const iconsCss = css`
 `
 
 export const Bar = styled.aside`
-  position: fixed;
-  z-index: 1;
-  left: 0;
-
+  background: var(--white);
   height: 100%;
   width: 5rem;
   padding: 0.7rem;
-  background: var(--bg);
-  box-shadow: 0 0 60px rgba(0, 0, 0, 0.5);
-
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
+  position: fixed;
+  top: 0;
+  left: 0;
 
   > .image-container {
     cursor: pointer;
-  }
-
-  .icons-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
   }
 
   @media screen and (max-width: 768px) {
@@ -49,13 +48,22 @@ export const Bar = styled.aside`
   }
 `
 
-export const HomeIcon = styled(FiHome)`
+export const HomeIcon = styled(BiHomeAlt)`
   ${iconsCss}
 `
 
-export const AwardIcon = styled(BiAward)`
+export const AwardIcon = styled(BiMedal)`
   ${iconsCss}
 `
+
 export const ExitIcon = styled(ImExit)`
+  ${iconsCss}
+`
+
+export const LightIcon = styled(BiMoon)`
+  ${iconsCss}
+`
+
+export const DarkIcon = styled(BiSun)`
   ${iconsCss}
 `
