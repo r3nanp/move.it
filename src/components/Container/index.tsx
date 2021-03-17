@@ -135,8 +135,16 @@ export const FourOhFourPage = styled.main`
   grid-template-columns: repeat(2, 1fr);
   align-content: center;
 
+  @media screen and (max-width: 768px) {
+    ${contentCss}
+  }
+
   .left-content {
     ${contentCss}
+
+    @media screen and (max-width: 768px) {
+      display: none;
+    }
   }
 
   .right-content {
