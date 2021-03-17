@@ -1,7 +1,9 @@
+import { ReactElement, useEffect } from 'react'
 import { GetServerSideProps, GetServerSidePropsContext } from 'next'
-import { useAuth } from '../hooks/useAuth'
-
+import { useRouter } from 'next/router'
 import { useSession } from 'next-auth/client'
+
+import { useAuth } from '../hooks/useAuth'
 import { CountdownProvider } from '../contexts/CountdownContext'
 import { ChallengesProvider } from '../contexts/ChallengesContext'
 
@@ -20,12 +22,20 @@ interface ExerciseProps {
   challengesCompleted: number
 }
 
-export default function Exercise(props: ExerciseProps): JSX.Element {
+export default function Exercise(props: ExerciseProps): ReactElement {
   const { level, currentExperience, challengesCompleted } = props
-
   const { signOut } = useAuth()
+  const router = useRouter()
 
   const [session, loading] = useSession()
+
+  useEffect(() => {
+    if (!session || !loading) {
+      router.push('/')
+    } else {
+      router.push('/exercise')
+    }
+  }, [session, loading])
 
   return (
     <ChallengesProvider
