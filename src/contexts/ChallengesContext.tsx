@@ -1,5 +1,10 @@
-/* eslint-disable no-new */
-import { createContext, useEffect, useState } from 'react'
+import {
+  createContext,
+  ReactElement,
+  ReactNode,
+  useEffect,
+  useState
+} from 'react'
 import Cookies from 'js-cookie'
 import { LevelUpModal } from '../components/LevelUpModal'
 
@@ -22,10 +27,11 @@ export interface ChallengesContextData {
   resetChallenge: () => void
   completeChallenge: () => void
   closeLevelUpModal: () => void
+  isLevelUpModalOpen: boolean
 }
 
 interface ProviderProps {
-  children: React.ReactNode
+  children: ReactNode
   challengesCompleted: number
   currentExperience: number
   level: number
@@ -36,7 +42,7 @@ export const ChallengesContext = createContext({} as ChallengesContextData)
 export function ChallengesProvider({
   children,
   ...rest
-}: ProviderProps): JSX.Element {
+}: ProviderProps): ReactElement {
   const [level, setLevel] = useState(rest.level ?? 1)
   const [currentExperience, setCurrentExperience] = useState(
     rest.currentExperience ?? 0
@@ -77,6 +83,7 @@ export function ChallengesProvider({
 
     new Audio('/notification.mp3').play()
 
+    /* eslint-disable no-new */
     if (Notification.permission === 'granted') {
       new Notification('Novo desafio 🎊', {
         body: `Valendo ${challenge.amount} xp`
@@ -110,6 +117,7 @@ export function ChallengesProvider({
     <ChallengesContext.Provider
       {...rest}
       value={{
+        isLevelUpModalOpen,
         currentExperience,
         challengesCompleted,
         level,

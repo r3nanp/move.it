@@ -1,4 +1,10 @@
-import { createContext, ReactNode, useEffect, useState } from 'react'
+import {
+  createContext,
+  ReactNode,
+  useEffect,
+  ReactElement,
+  useState
+} from 'react'
 import { ThemeProvider as ThemeStyledProvider } from 'styled-components'
 
 import GlobalStyles from '../styles/global'
@@ -15,7 +21,7 @@ interface ThemeProps {
 
 export const ThemeContext = createContext({} as ThemeContextData)
 
-export function ThemeProvider({ children }: ThemeProps): JSX.Element {
+export function ThemeProvider({ children }: ThemeProps): ReactElement {
   const [theme, setTheme] = useState<ThemeName>('light')
   const currentTheme = themes[theme]
 
