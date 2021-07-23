@@ -1,8 +1,8 @@
 import { NextApiRequest, NextApiResponse } from 'next'
-import NextAuth, { InitOptions, User } from 'next-auth'
+import NextAuth, { User } from 'next-auth'
 import Providers from 'next-auth/providers'
 
-const options: InitOptions = {
+const options = {
   providers: [
     Providers.GitHub({
       clientId: process.env.GITHUB_CLIENT_ID,
@@ -11,13 +11,9 @@ const options: InitOptions = {
   ],
   callbacks: {
     session: async (session, user: User) => {
-      return Promise.resolve({
-        ...session,
-        user
-      })
-    },
-    redirect: async () => {
-      return Promise.resolve(`${process.env.PRODUCTION_URL}`)
+      session.user = user
+
+      return Promise.resolve(session)
     }
   }
 }
