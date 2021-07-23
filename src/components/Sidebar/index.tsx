@@ -1,8 +1,8 @@
 import Image from 'next/image'
-import { FormEvent } from 'react'
-import { useRouter } from 'next/router'
+import { FormEvent, useCallback } from 'react'
+import Router from 'next/router'
 
-import { useTheme } from '../../hooks/useTheme'
+import { useTheme } from 'hooks/useTheme'
 import {
   Bar,
   ExitIcon,
@@ -18,15 +18,14 @@ interface SidebarProps {
 
 export function Sidebar({ handleExit }: SidebarProps): JSX.Element {
   const { switchTheme, theme } = useTheme()
-  const { push } = useRouter()
 
-  function handleGoExercise() {
-    push('/exercise')
-  }
+  const handleGoExercise = useCallback(() => {
+    Router.push('/exercise')
+  }, [])
 
-  function handleGoLeaderboard() {
-    push('/leaderboard')
-  }
+  const handleGoLeaderboard = useCallback(() => {
+    Router.push('/leaderboard')
+  }, [])
 
   return (
     <>
