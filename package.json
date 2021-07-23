@@ -24,7 +24,6 @@
     "test": "jest"
   },
   "dependencies": {
-    "js-cookie": "^2.2.1",
     "next": "10.0.7",
     "next-auth": "^3.5.0",
     "nookies": "^2.5.2",
