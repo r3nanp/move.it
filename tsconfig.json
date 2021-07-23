@@ -25,12 +25,16 @@
       "utils/*": ["src/utils/*"],
       "contexts/*": ["src/contexts/*"],
       "styles/*": ["src/styles/*"],
+      "templates/*": ["src/templates/*"],
     }
   },
   "include": [
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx"
+  ],
+  "files": [
+    "src/styles/styled.d.ts"
   ],
   "exclude": [
     "node_modules"
