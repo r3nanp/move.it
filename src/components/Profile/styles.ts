@@ -1,29 +1,33 @@
 import styled from 'styled-components'
 
 export const Container = styled.div`
+  margin-top: 0.5rem;
+
   display: flex;
   align-items: center;
 
-  .image {
-    border-radius: 50%;
-    width: 5.5rem;
-    height: 5.5rem;
+  .image-wrapper {
+    img {
+      border-radius: 50%;
+      width: 5.5rem;
+      height: 5.5rem;
+    }
   }
 
-  div {
+  .profile-content {
     margin-left: 1.5rem;
 
-    > strong {
+    strong {
       font-size: 1.5rem;
       font-weight: 600;
       color: var(--title);
     }
 
-    > p {
+    .level {
       font-size: 1rem;
       margin-top: 0.5rem;
 
-      > img {
+      img {
         margin-right: 0.5rem;
       }
     }

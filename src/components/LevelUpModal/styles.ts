@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { FaTwitter } from 'react-icons/fa'
 
 export const Overlay = styled.section`
   background: rgba(242, 243, 245, 0.8);
@@ -26,7 +27,7 @@ export const Container = styled.div`
 
   position: relative;
 
-  > header {
+  header {
     font-size: 8.75rem;
     font-weight: 600;
     color: var(--blue);
@@ -35,18 +36,18 @@ export const Container = styled.div`
     background-size: contain;
   }
 
-  > strong {
+  strong {
     font-size: 2.25rem;
     color: var(--title);
   }
 
-  > p {
+  p {
     font-size: 1.25rem;
     color: var(--text);
     margin-top: 0.25rem;
   }
 
-  button {
+  .close {
     position: absolute;
     right: 0.5rem;
     top: 0.5rem;
@@ -54,5 +55,45 @@ export const Container = styled.div`
     background: transparent;
     border: 0;
     font-size: 0;
+  }
+
+  footer {
+    margin-top: 1rem;
+    width: 100%;
+
+    .twitter {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      width: 100%;
+      height: 4rem;
+      border: 0;
+      border-radius: 5px;
+      font-size: 1.25rem;
+      font-weight: 600;
+
+      background: #f5fcff;
+      color: var(--blue-twitter);
+      transition: all 0.2s ease-in-out;
+
+      &:hover {
+        color: var(--white);
+        background: var(--blue-twitter);
+      }
+    }
+  }
+`
+
+export const TwitterIcon = styled(FaTwitter)`
+  width: 1.5rem;
+  height: 1.5rem;
+
+  margin-left: 0.5rem;
+  color: var(--blue-twitter);
+  transition: all 0.2s ease-in-out;
+
+  &:hover {
+    color: var(--white);
   }
 `

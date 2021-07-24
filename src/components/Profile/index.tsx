@@ -1,8 +1,8 @@
 import Image from 'next/image'
-import { useChallenges } from '../../hooks/useChallenges'
-import { Container } from './styles'
+import { useChallenges } from 'hooks/useChallenges'
+import * as S from './styles'
 
-interface ProfileProps {
+type ProfileProps = {
   imageUrl: string
   name: string
 }
@@ -11,21 +11,24 @@ export function Profile({ imageUrl, name }: ProfileProps): JSX.Element {
   const { level } = useChallenges()
 
   return (
-    <Container>
-      <Image
-        src={imageUrl}
-        width={88}
-        height={88}
-        alt="Profile image"
-        className="image"
-      />
-      <div>
+    <S.Container>
+      <div className="image-wrapper">
+        <Image
+          src={imageUrl}
+          width={88}
+          height={88}
+          alt={name}
+          objectFit="cover"
+        />
+      </div>
+
+      <div className="profile-content">
         <strong>{name}</strong>
-        <p>
+        <p className="level">
           <img src="/icons/level.svg" alt="Level logo" />
           Level {level}
         </p>
       </div>
-    </Container>
+    </S.Container>
   )
 }
