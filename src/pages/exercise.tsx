@@ -1,87 +1,29 @@
-import { ReactElement, useEffect } from 'react'
-import { GetServerSideProps, GetServerSidePropsContext } from 'next'
-import { useRouter } from 'next/router'
-import { useSession } from 'next-auth/client'
+import { GetServerSideProps } from 'next'
 
-import { useAuth } from '../hooks/useAuth'
-import { CountdownProvider } from '../contexts/CountdownContext'
-import { ChallengesProvider } from '../contexts/ChallengesContext'
+import { ExerciseTemplate } from 'templates/exercise'
+import { protectedRoutes } from 'utils/protected-routes'
+import { getCookie } from 'utils/cookies'
 
-import { Container } from '../components/Container'
-import { ExperienceBar } from '../components/ExperienceBar'
-import { SEO } from '../components/SEO/SEO'
-import { Sidebar } from '../components/Sidebar'
-import { Profile } from '../components/Profile'
-import { CompletedChallenges } from '../components/CompletedChallenges'
-import { Countdown } from '../components/Countdown'
-import { ChallengeBox } from '../components/ChallengeBox'
-
-interface ExerciseProps {
+type ExerciseProps = {
   level: number
   currentExperience: number
   challengesCompleted: number
 }
 
-export default function Exercise(props: ExerciseProps): ReactElement {
-  const { level, currentExperience, challengesCompleted } = props
-  const { signOut } = useAuth()
-  const router = useRouter()
-
-  const [session, loading] = useSession()
-
-  useEffect(() => {
-    if (!session || !loading) {
-      router.push('/')
-    } else {
-      router.push('/exercise')
-    }
-  }, [session, loading])
-
-  return (
-    <ChallengesProvider
-      level={level}
-      currentExperience={currentExperience}
-      challengesCompleted={challengesCompleted}
-    >
-      <Sidebar handleExit={signOut} />
-      <Container>
-        <SEO title="Move.it | Exercise" />
-
-        {loading && <p>Carregando..</p>}
-
-        {session && (
-          <>
-            <ExperienceBar />
-            <CountdownProvider>
-              <section>
-                <div>
-                  <Profile
-                    imageUrl={session.user.image}
-                    name={session.user.name}
-                  />
-                  <CompletedChallenges />
-                  <Countdown />
-                </div>
-                <div>
-                  <ChallengeBox />
-                </div>
-              </section>
-            </CountdownProvider>
-          </>
-        )}
-
-        {!session && <p>Você precisa logar!</p>}
-      </Container>
-    </ChallengesProvider>
-  )
+export default function ExercisePage(props: ExerciseProps): JSX.Element {
+  return <ExerciseTemplate {...props} />
 }
 
-export const getServerSideProps: GetServerSideProps = async (
-  context: GetServerSidePropsContext
-) => {
-  const cookies = context.req.cookies
+export const getServerSideProps: GetServerSideProps = async context => {
+  const session = await protectedRoutes(context)
 
-  const { level, currentExperience, challengesCompleted } = cookies
+  const level = getCookie('level', context)
+  const currentExperience = getCookie('currentExperience', context)
+  const challengesCompleted = getCookie('challengesCompleted', context)
+
+  if (!session) {
+    return { props: {} }
+  }
 
   return {
     props: {
