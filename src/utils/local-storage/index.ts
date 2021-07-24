@@ -1,6 +1,6 @@
 const APP_KEY = '@MoveIt'
 
-export function getStorageItem(key: string): string {
+export function getStorageItem(key: string) {
   // There's no window in Next Static/SSR
   if (typeof window === 'undefined') return
 
@@ -8,7 +8,7 @@ export function getStorageItem(key: string): string {
   return JSON.parse(data)
 }
 
-export function setStorageItem(key: string, value: string): void {
+export function setStorageItem(key: string, value: string) {
   // There's no window in Next Static/SSR
   if (typeof window === 'undefined') return
 
