@@ -4,7 +4,7 @@ import Link from 'next/link'
 
 import * as S from './styles'
 
-export function FourOhFour(): JSX.Element {
+export function FourOhFourTemplate(): JSX.Element {
   return (
     <S.Container>
       <Head>

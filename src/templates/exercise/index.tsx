@@ -13,6 +13,7 @@ import { ChallengeBox } from 'components/ChallengeBox'
 import { ExperienceBar } from 'components/ExperienceBar'
 import { CompletedChallenges } from 'components/CompletedChallenges'
 
+import challenges from 'challenges.json'
 import * as S from './styles'
 
 type ExerciseProps = {
@@ -21,7 +22,7 @@ type ExerciseProps = {
   challengesCompleted: number
 }
 
-export function Exercise({
+export function ExerciseTemplate({
   level,
   currentExperience,
   challengesCompleted
@@ -34,6 +35,7 @@ export function Exercise({
       level={level}
       currentExperience={currentExperience}
       challengesCompleted={challengesCompleted}
+      challenges={challenges}
     >
       <Sidebar handleExit={signOut} />
       <S.Container>

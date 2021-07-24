@@ -4,7 +4,7 @@ import { SEO } from 'components/SEO'
 import { useAuth } from 'hooks/useAuth'
 import * as S from './styles'
 
-export function SignIn(): JSX.Element {
+export function SignInTemplate(): JSX.Element {
   const { signIn } = useAuth()
 
   return (
