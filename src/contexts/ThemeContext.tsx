@@ -4,7 +4,7 @@ import { createContext } from 'use-context-selector'
 
 import { getStorageItem, setStorageItem } from 'utils/local-storage'
 import { GlobalStyles } from 'styles/global'
-import { themes, ThemeName } from 'styles/theme'
+import { ThemeName, themes } from 'styles/theme'
 
 export type ThemeContextData = {
   switchTheme: () => void
