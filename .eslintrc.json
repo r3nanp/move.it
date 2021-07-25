@@ -28,6 +28,11 @@
     "react-hooks",
     "jest-dom"
   ],
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
   "rules": {
     "prettier/prettier": "error",
     "react/prop-types": "off",
