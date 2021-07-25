@@ -1,8 +1,12 @@
-import { useContext } from 'react'
+import { useContextSelector } from 'use-context-selector'
 import { AuthContext } from 'contexts/AuthContext'
 
 export function useAuth() {
-  const context = useContext(AuthContext)
+  const signIn = useContextSelector(AuthContext, auth => auth.signIn)
+  const signOut = useContextSelector(AuthContext, auth => auth.signOut)
 
-  return context
+  return {
+    signIn,
+    signOut
+  }
 }

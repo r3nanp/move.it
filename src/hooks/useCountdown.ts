@@ -1,9 +1,30 @@
-// import { useContextSelector } from 'use-context-selector'
-import { useContext } from 'react'
+import { useContextSelector } from 'use-context-selector'
 import { CountdownContext } from 'contexts/CountdownContext'
 
 export function useCountdown() {
-  const context = useContext(CountdownContext)
+  const startCountdown = useContextSelector(
+    CountdownContext,
+    countdown => countdown.startCountdown
+  )
 
-  return context
+  const resetCountdown = useContextSelector(
+    CountdownContext,
+    countdown => countdown.resetCountdown
+  )
+
+  const isActive = useContextSelector(
+    CountdownContext,
+    countdown => countdown.isActive
+  )
+  const hasFinished = useContextSelector(
+    CountdownContext,
+    countdown => countdown.hasFinished
+  )
+
+  return {
+    startCountdown,
+    resetCountdown,
+    isActive,
+    hasFinished
+  }
 }

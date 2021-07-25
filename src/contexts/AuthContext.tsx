@@ -1,10 +1,5 @@
-import {
-  createContext,
-  FormEvent,
-  ReactElement,
-  ReactNode,
-  useCallback
-} from 'react'
+import { FormEvent, ReactNode, useCallback } from 'react'
+import { createContext } from 'use-context-selector'
 
 import {
   Provider,
@@ -17,7 +12,7 @@ export interface AuthContextData {
   signOut: (event: FormEvent) => void
 }
 
-interface AuthProviderProps {
+type AuthProviderProps = {
   children: ReactNode
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   pageProps: any
@@ -28,14 +23,14 @@ export const AuthContext = createContext({} as AuthContextData)
 export function AuthProvider({
   pageProps,
   children
-}: AuthProviderProps): ReactElement {
+}: AuthProviderProps): JSX.Element {
   const signIn = useCallback((event: FormEvent) => {
     event.preventDefault()
     handleLogin('github', {
       callbackUrl:
-        process.env.NODE_ENV !== 'production'
-          ? process.env.DEV_URL
-          : process.env.PRODUCTION_URL
+        process.env.NODE_ENV === 'production'
+          ? `${process.env.PRODUCTION_URL}/exercise`
+          : 'http://localhost:3000/exercise'
     })
   }, [])
 
@@ -43,9 +38,9 @@ export function AuthProvider({
     event.preventDefault()
     handleLogout({
       callbackUrl:
-        process.env.NODE_ENV !== 'production'
-          ? process.env.DEV_LOGOUT_URL
-          : process.env.PRODUCTION_LOGOUT_URL
+        process.env.NODE_ENV === 'production'
+          ? `${process.env.PRODUCTION_URL}`
+          : 'http://localhost:3000/'
     })
   }, [])
 
