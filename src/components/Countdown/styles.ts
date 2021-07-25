@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 export const Container = styled.section`
   display: flex;
@@ -7,7 +7,7 @@ export const Container = styled.section`
   font-family: Rajdhani, sans-serif;
   font-weight: 600;
   color: var(--title);
-  > div {
+  div {
     flex: 1;
 
     display: flex;
@@ -20,7 +20,7 @@ export const Container = styled.section`
     font-size: 8.5rem;
     text-align: center;
 
-    > span {
+    span {
       flex: 1;
     }
 
@@ -32,7 +32,7 @@ export const Container = styled.section`
     }
   }
 
-  > span {
+  .separator {
     font-size: 6.25rem;
     margin: 0.5rem;
   }
@@ -40,6 +40,7 @@ export const Container = styled.section`
 
 interface IsActiveProps {
   isActive: boolean
+  hasFinished?: boolean
 }
 
 export const StartCountdown = styled.button<IsActiveProps>`
@@ -52,14 +53,16 @@ export const StartCountdown = styled.button<IsActiveProps>`
   justify-content: center;
   border: 0;
   border-radius: 5px;
+  border-bottom: ${props =>
+    props.hasFinished ? ' 3px solid var(--green)' : 'none'};
 
-  color: var(--white);
-  background: ${props => (props.isActive ? 'var(--red)' : 'var(--blue)')};
+  background: ${props => (props.isActive ? 'var(--white)' : 'var(--blue)')};
+  color: ${props => (props.isActive ? 'var(--text)' : 'var(--white)')};
 
   font-size: 1.25rem;
   font-weight: 600;
 
-  transition: all 0.2s;
+  transition: background 0.2s ease-in-out;
 
   &:disabled {
     background: var(--white);
@@ -68,7 +71,13 @@ export const StartCountdown = styled.button<IsActiveProps>`
   }
 
   &:not(:disabled):hover {
-    background: ${props =>
-      props.isActive ? 'var(--red-dark)' : 'var(--blue-dark)'};
+    ${props => css`
+      background: ${props.isActive ? 'var(--red)' : 'var(--blue-dark)'};
+      color: var(--white);
+    `}
+  }
+
+  .icon {
+    margin-left: 0.5rem;
   }
 `

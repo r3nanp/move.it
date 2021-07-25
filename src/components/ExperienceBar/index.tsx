@@ -1,16 +1,19 @@
-import { useChallenges } from '../../hooks/useChallenges'
-import { Header } from './styles'
+import { useMemo } from 'react'
+import { useChallenges } from 'hooks/useChallenges'
+import * as S from './styles'
 
 export function ExperienceBar(): JSX.Element {
   const { currentExperience, experienceToNextLevel } = useChallenges()
 
-  const percentToNextLevel =
-    Math.round(currentExperience * 100) / experienceToNextLevel
+  const percentToNextLevel = useMemo(
+    () => Math.round(currentExperience * 100) / experienceToNextLevel,
+    [currentExperience, experienceToNextLevel]
+  )
 
   return (
-    <Header>
+    <S.Header>
       <span>0 xp</span>
-      <div>
+      <S.Wrapper>
         <div style={{ width: `${percentToNextLevel}%` }}>
           <span
             className="current-experience"
@@ -19,8 +22,8 @@ export function ExperienceBar(): JSX.Element {
             {currentExperience} xp
           </span>
         </div>
-      </div>
+      </S.Wrapper>
       <span>{experienceToNextLevel} xp</span>
-    </Header>
+    </S.Header>
   )
 }

@@ -1,62 +1,58 @@
-import { useChallenges } from '../../hooks/useChallenges'
-import { useCountdown } from '../../hooks/useCountdown'
+import { useCallback } from 'react'
+import { useChallenges } from 'hooks/useChallenges'
+import { useCountdown } from 'hooks/useCountdown'
 
-import {
-  Button,
-  ChallengeActive,
-  ChallengeNotActive,
-  Container
-} from './styles'
+import * as S from './styles'
 
 export function ChallengeBox(): JSX.Element {
   const { activeChallenge, resetChallenge, completeChallenge } = useChallenges()
 
   const { resetCountdown } = useCountdown()
 
-  const handleChallengeSucceded = () => {
+  const handleChallengeSucceeded = useCallback(() => {
     completeChallenge()
     resetCountdown()
-  }
+  }, [completeChallenge, resetCountdown])
 
-  const handleChallengeFailed = () => {
+  const handleChallengeFailed = useCallback(() => {
     resetChallenge()
     resetCountdown()
-  }
+  }, [resetChallenge, resetCountdown])
 
   return (
-    <Container>
+    <S.Container>
       {activeChallenge ? (
-        <ChallengeActive>
+        <S.ChallengeActive>
           <header>Ganhe {activeChallenge.amount} xp</header>
 
-          <main>
+          <div className="challenge">
             <img src={`icons/${activeChallenge.type}.svg`} alt="Body" />
             <strong>Novo desafio</strong>
             <p>{activeChallenge.description}</p>
-          </main>
+          </div>
 
           <footer>
-            <Button type="button" isFailed onClick={handleChallengeFailed}>
+            <S.Button type="button" isFailed onClick={handleChallengeFailed}>
               Falhei
-            </Button>
-            <Button
+            </S.Button>
+            <S.Button
               type="button"
               isFailed={false}
-              onClick={handleChallengeSucceded}
+              onClick={handleChallengeSucceeded}
             >
               Completei
-            </Button>
+            </S.Button>
           </footer>
-        </ChallengeActive>
+        </S.ChallengeActive>
       ) : (
-        <ChallengeNotActive>
+        <S.ChallengeNotActive>
           <strong>Finalize um ciclo para receber um desafio.</strong>
-          <p>
+          <p className="description">
             <img src="icons/level-up.svg" alt="Level up" />
             Avance de level completando desafios.
           </p>
-        </ChallengeNotActive>
+        </S.ChallengeNotActive>
       )}
-    </Container>
+    </S.Container>
   )
 }

@@ -1,8 +1,15 @@
-import { useContext } from 'react'
-import { ThemeContext, ThemeContextData } from '../contexts/ThemeContext'
+import { useContextSelector } from 'use-context-selector'
+import { ThemeContext } from 'contexts/ThemeContext'
 
-export function useTheme(): ThemeContextData {
-  const context = useContext(ThemeContext)
+export function useTheme() {
+  const switchTheme = useContextSelector(
+    ThemeContext,
+    theme => theme.switchTheme
+  )
+  const theme = useContextSelector(ThemeContext, theme => theme.theme)
 
-  return context
+  return {
+    switchTheme,
+    theme
+  }
 }

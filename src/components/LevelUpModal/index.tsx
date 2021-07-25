@@ -1,26 +1,37 @@
-import { ReactElement } from 'react'
-import { useChallenges } from '../../hooks/useChallenges'
-import { Container, Overlay } from './styles'
+import { useToggle } from 'hooks/useToggle'
+import * as S from './styles'
 
-export function LevelUpModal(): ReactElement {
-  const { level, closeLevelUpModal, isLevelUpModalOpen } = useChallenges()
+export type LevelUpModalProps = {
+  level: number
+}
+
+export function LevelUpModal({ level }: LevelUpModalProps): JSX.Element {
+  const [isOpen, toggleIsOpen] = useToggle(false)
 
   return (
-    <Overlay onClick={closeLevelUpModal} aria-hidden={!isLevelUpModalOpen}>
-      <Container>
+    <S.Overlay onClick={toggleIsOpen} aria-hidden={!isOpen}>
+      <S.Container>
         <header>{level}</header>
 
         <strong>Parabéns</strong>
         <p>Você alcançou um novo level!</p>
 
+        <footer>
+          <button className="twitter">
+            Compartilhe no Twitter
+            <S.TwitterIcon />
+          </button>
+        </footer>
+
         <button
           type="button"
-          onClick={closeLevelUpModal}
-          aria-hidden={!isLevelUpModalOpen}
+          onClick={toggleIsOpen}
+          aria-hidden={!isOpen}
+          className="close"
         >
           <img src="/icons/close.svg" alt="Fechar modal" />
         </button>
-      </Container>
-    </Overlay>
+      </S.Container>
+    </S.Overlay>
   )
 }

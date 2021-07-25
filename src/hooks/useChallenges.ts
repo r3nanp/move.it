@@ -1,11 +1,69 @@
-import { useContext } from 'react'
-import {
-  ChallengesContext,
-  ChallengesContextData
-} from '../contexts/ChallengesContext'
+import { useContextSelector } from 'use-context-selector'
+import { ChallengesContext } from 'contexts/ChallengesContext'
 
-export function useChallenges(): ChallengesContextData {
-  const context = useContext(ChallengesContext)
+export function useChallenges() {
+  const levelUp = useContextSelector(
+    ChallengesContext,
+    challenge => challenge.levelUp
+  )
+  const level = useContextSelector(
+    ChallengesContext,
+    challenge => challenge.level
+  )
+  const isLevelUpModalOpen = useContextSelector(
+    ChallengesContext,
+    challenge => challenge.isLevelUpModalOpen
+  )
 
-  return context
+  const activeChallenge = useContextSelector(
+    ChallengesContext,
+    challenge => challenge.activeChallenge
+  )
+
+  const startNewChallenge = useContextSelector(
+    ChallengesContext,
+    challenge => challenge.startNewChallenge
+  )
+
+  const toggleIsLevelUpModalOpen = useContextSelector(
+    ChallengesContext,
+    challenge => challenge.toggleIsLevelUpModalOpen
+  )
+  const currentExperience = useContextSelector(
+    ChallengesContext,
+    challenge => challenge.currentExperience
+  )
+  const experienceToNextLevel = useContextSelector(
+    ChallengesContext,
+    challenge => challenge.experienceToNextLevel
+  )
+
+  const challengesCompleted = useContextSelector(
+    ChallengesContext,
+    challenge => challenge.challengesCompleted
+  )
+
+  const completeChallenge = useContextSelector(
+    ChallengesContext,
+    challenge => challenge.completeChallenge
+  )
+
+  const resetChallenge = useContextSelector(
+    ChallengesContext,
+    challenge => challenge.resetChallenge
+  )
+
+  return {
+    level,
+    isLevelUpModalOpen,
+    activeChallenge,
+    challengesCompleted,
+    currentExperience,
+    experienceToNextLevel,
+    levelUp,
+    completeChallenge,
+    startNewChallenge,
+    toggleIsLevelUpModalOpen,
+    resetChallenge
+  }
 }

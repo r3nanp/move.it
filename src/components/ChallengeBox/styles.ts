@@ -21,13 +21,13 @@ export const ChallengeNotActive = styled.div`
   flex-direction: column;
   align-items: center;
 
-  > strong {
+  strong {
     font-size: 1.5rem;
     font-weight: 500;
     line-height: 1.4;
   }
 
-  > p {
+  .description {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -48,7 +48,7 @@ export const ChallengeActive = styled.div`
   display: flex;
   flex-direction: column;
 
-  > header {
+  header {
     color: var(--blue);
     font-weight: 600;
     font-size: 1.25rem;
@@ -57,7 +57,7 @@ export const ChallengeActive = styled.div`
     border-bottom: 1px solid var(--gray-line);
   }
 
-  > main {
+  .challenge {
     flex: 1;
 
     display: flex;
@@ -65,7 +65,7 @@ export const ChallengeActive = styled.div`
     align-items: center;
     justify-content: center;
 
-    > strong {
+    strong {
       font-size: 2rem;
       font-weight: 600;
       color: var(--title);
@@ -73,25 +73,26 @@ export const ChallengeActive = styled.div`
     }
   }
 
-  > footer {
+  footer {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 1rem;
+
+    width: 100%;
+    height: 4rem;
   }
 `
 
-interface IsFailedProps {
+type IsFailedProps = {
   isFailed: boolean
 }
 
 export const Button = styled.button<IsFailedProps>`
-  height: 3rem;
-
   display: flex;
   align-items: center;
   justify-content: center;
 
-  color: var(--white);
+  color: ${props => (props.isFailed ? 'var(--red)' : 'var(--green)')};
 
   border: 0;
   border-radius: 5px;
@@ -99,11 +100,13 @@ export const Button = styled.button<IsFailedProps>`
   font-size: 1rem;
   font-weight: 600;
 
-  background: ${props => (props.isFailed ? 'var(--red)' : 'var(--green)')};
+  background: ${props =>
+    props.isFailed ? 'var(--failed-button)' : 'var(--completed-button)'};
 
-  transition: filter 0.2s;
+  transition: all 0.2s ease-in-out;
 
   &:hover {
-    filter: brightness(0.9);
+    background: ${props => (props.isFailed ? 'var(--red)' : 'var(--green)')};
+    color: var(--white);
   }
 `

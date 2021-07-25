@@ -29,8 +29,8 @@ const iconsCss = css`
 export const Bar = styled.aside`
   background: var(--white);
   height: 100%;
-  width: 5rem;
-  padding: 0.7rem;
+  width: 6rem;
+  padding: 1.5rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -39,7 +39,7 @@ export const Bar = styled.aside`
   top: 0;
   left: 0;
 
-  > .image-container {
+  .image-container {
     cursor: pointer;
   }
 

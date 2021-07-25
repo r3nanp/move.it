@@ -1,44 +1,36 @@
-import {
-  createContext,
-  ReactNode,
-  useEffect,
-  ReactElement,
-  useState
-} from 'react'
+import { ReactNode, useCallback, useEffect, useState } from 'react'
 import { ThemeProvider as ThemeStyledProvider } from 'styled-components'
+import { createContext } from 'use-context-selector'
 
-import GlobalStyles from '../styles/global'
-import { themes, ThemeName } from '../styles/theme'
+import { getStorageItem, setStorageItem } from 'utils/local-storage'
+import { GlobalStyles } from 'styles/global'
+import { ThemeName, themes } from 'styles/theme'
 
-export interface ThemeContextData {
+export type ThemeContextData = {
   switchTheme: () => void
   theme: ThemeName
 }
 
-interface ThemeProps {
+type ThemeProps = {
   children: ReactNode
 }
 
 export const ThemeContext = createContext({} as ThemeContextData)
 
-export function ThemeProvider({ children }: ThemeProps): ReactElement {
+export function ThemeProvider({ children }: ThemeProps): JSX.Element {
   const [theme, setTheme] = useState<ThemeName>('light')
   const currentTheme = themes[theme]
 
-  function switchTheme() {
+  const switchTheme = useCallback(() => {
     setTheme(theme === 'light' ? 'dark' : 'light')
-  }
+  }, [theme])
 
   useEffect(() => {
-    const themeStoraged = localStorage.getItem('@MoveIt:theme')
-
-    if (themeStoraged) {
-      setTheme(JSON.parse(themeStoraged))
-    }
+    getStorageItem('theme')
   }, [])
 
   useEffect(() => {
-    localStorage.setItem('@MoveIt:theme', JSON.stringify(theme))
+    setStorageItem('theme', theme)
   }, [theme])
 
   return (

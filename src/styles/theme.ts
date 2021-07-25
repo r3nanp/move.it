@@ -12,7 +12,8 @@ export const themes = {
     'text-highlight': '#b3b9ff',
     'blue-dark': '#4953b8',
     'blue-twitter': '#2aa9e0',
-    'red-dark': '#C81A41'
+    'failed-button': '#FFF5F5',
+    'completed-button': '#F7FFF5'
   },
   dark: {
     bg: '#121214',
@@ -27,7 +28,8 @@ export const themes = {
     'text-highlight': '#b3b9ff',
     'blue-dark': '#4953b8',
     'blue-twitter': '#2aa9e0',
-    'red-dark': '#C81A41'
+    'failed-button': '#FFF5F5',
+    'completed-button': '#F7FFF5'
   }
 }
 
