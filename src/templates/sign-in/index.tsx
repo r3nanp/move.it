@@ -1,17 +1,19 @@
+import { FormEvent } from 'react'
 import Image from 'next/image'
 import { SEO } from 'components/SEO'
 
-import { useAuth } from 'hooks/useAuth'
 import * as S from './styles'
 
-export function SignInTemplate(): JSX.Element {
-  const { signIn } = useAuth()
+type SignInProps = {
+  signIn: (event: FormEvent) => void
+}
 
+export function SignInTemplate({ signIn }: SignInProps): JSX.Element {
   return (
     <S.Container>
       <SEO title="Move.it | Login" />
       <S.ImageWrapper>
-        <Image src="/logo-gradient.png" alt="Banner" width={760} height={660} />
+        <Image src="/banner.png" alt="Banner" width={760} height={660} />
       </S.ImageWrapper>
 
       <S.RightContent>
