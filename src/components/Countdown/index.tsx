@@ -1,15 +1,15 @@
 import { useCountdown } from 'hooks/useCountdown'
+import { useCountdownTime } from 'hooks/useCountdownTime'
 import * as S from './styles'
 
 export function Countdown(): JSX.Element {
   const {
-    minutes,
-    seconds,
-    hasFinished,
-    isActive,
     startCountdown,
-    resetCountdown
+    resetCountdown,
+    isActive,
+    hasFinished
   } = useCountdown()
+  const { minutes, seconds } = useCountdownTime()
 
   const [minuteLeft, minuteRight] = String(minutes).padStart(2, '0').split('')
   const [secondsLeft, secondsRight] = String(seconds).padStart(2, '0').split('')
