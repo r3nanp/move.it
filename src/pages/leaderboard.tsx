@@ -1,15 +1,16 @@
-import { SEO } from 'components/SEO'
-import { Sidebar } from 'components/Sidebar'
-import { useAuth } from 'hooks/useAuth'
+import { GetServerSideProps } from 'next'
+import { protectedRoutes } from 'utils/protected-routes'
+
+import { LeaderboardTemplate } from 'templates/leaderboard'
 
 export default function Leaderboard(): JSX.Element {
-  const { signOut } = useAuth()
+  return <LeaderboardTemplate />
+}
 
-  return (
-    <>
-      <Sidebar handleExit={signOut} />
+export const getServerSideProps: GetServerSideProps = async context => {
+  const session = await protectedRoutes(context)
 
-      <SEO title="Move.it | Ranking" />
-    </>
-  )
+  if (!session) {
+    return { props: {} }
+  }
 }
