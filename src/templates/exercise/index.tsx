@@ -28,7 +28,7 @@ export function ExerciseTemplate({
   challengesCompleted
 }: ExerciseProps): JSX.Element {
   const [session, loading] = useSession()
-  const { signOut } = useAuth()
+  const { handleSignOut } = useAuth()
 
   return (
     <ChallengesProvider
@@ -37,7 +37,7 @@ export function ExerciseTemplate({
       challengesCompleted={challengesCompleted}
       challenges={challenges}
     >
-      <Sidebar handleExit={signOut} />
+      <Sidebar handleExit={handleSignOut} />
       <S.Container>
         <SEO title="Move.it | Exercise" />
         {loading && <Loader />}

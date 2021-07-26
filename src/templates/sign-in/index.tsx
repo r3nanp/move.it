@@ -5,10 +5,10 @@ import { SEO } from 'components/SEO'
 import * as S from './styles'
 
 type SignInProps = {
-  signIn: (event: FormEvent) => void
+  handleLogin: (event: FormEvent) => void
 }
 
-export function SignInTemplate({ signIn }: SignInProps): JSX.Element {
+export function SignInTemplate({ handleLogin }: SignInProps): JSX.Element {
   return (
     <S.Container>
       <SEO title="Move.it | Login" />
@@ -34,7 +34,7 @@ export function SignInTemplate({ signIn }: SignInProps): JSX.Element {
         </p>
 
         <div className="sign-in">
-          <button onClick={signIn}>Faça login</button>
+          <button onClick={handleLogin}>Faça login</button>
         </div>
       </S.RightContent>
     </S.Container>
