@@ -9,7 +9,7 @@
     "allowJs": true,
     "skipLibCheck": true,
     "strict": false,
-    "typeRoots": ["src/@types", "./node_modules/@types"],
+    "typeRoots": ["src/types", "./node_modules/@types"],
     "forceConsistentCasingInFileNames": true,
     "noEmit": true,
     "esModuleInterop": true,
