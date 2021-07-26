@@ -18,20 +18,18 @@ Fork the move.it repository, clone it locally and create a branch for your propo
 
 ### How to contribute 💪
 
-```
-# Create a new branch with your changes:
 
-$ git checkout -b <branch>
-```
-
-```
-# Save your changes and create a commit message telling you what you did:
-
-$ git commit -m "<commit>"
+Create a new branch with your changes:
+```bash
+git checkout -b <branch>
 ```
 
+Save your changes and create a commit message telling you what you did:
+```bash
+git commit -m "<commit>"
 ```
-# Submit your changes:
 
-$ git push origin <branch>
+Submit your changes:
+```bash
+git push origin <branch>
 ```

@@ -2,11 +2,8 @@
 <img src="./.github/logo.svg" />
 </p>
 
-<div align="center">
-
+# Move it
 > A app to make you move! Written in Next.js
-
-</div>
 
 ---
 
@@ -21,42 +18,46 @@
 
 ---
 
-# Technologies used 🛠
+# 🛠 Technologies used
 
 - Next.js
 - Typescript
+- Jest
+- Testing Library
 - styled-components
-- React icons
-- Next Auth
-- js-cookie
+- next-auth
+- Storybook
+- nookies
+- react-icons
+- husky
 
-# Contributing 🎉
+# 🎉 Contributing
 
 [Check this step by step](CONTRIBUTING.md)
 
-<br />
+# 🤔 How to run
 
-# How to run 🤔
-
-```
-# Clone repository
-
+Clone repository:
+```bash
 $ git clone https://github.com/r3nanp/move.it.git
 ```
 
-```
-# At the root of the project, run:
-
+At the root of the project, run:
+```bash
 yarn or npm install
 ```
 
+Copy the `.env.example` file to `.env` and fill the values:
+```bash
+cp .env.example .env.local
 ```
-# To run the app in your machine:
 
+Run the following command in order to start the application in a development environment:
+```bash
 yarn dev or npm run dev
 ```
 
-# Layout
+# 🎨 Layout
 
 <img src="./.github/screenshot.png">
 
