@@ -2,11 +2,14 @@ import { useContextSelector } from 'use-context-selector'
 import { AuthContext } from 'contexts/AuthContext'
 
 export function useAuth() {
-  const signIn = useContextSelector(AuthContext, auth => auth.signIn)
-  const signOut = useContextSelector(AuthContext, auth => auth.signOut)
+  const handleLogin = useContextSelector(AuthContext, auth => auth.handleLogin)
+  const handleSignOut = useContextSelector(
+    AuthContext,
+    auth => auth.handleSignOut
+  )
 
   return {
-    signIn,
-    signOut
+    handleSignOut,
+    handleLogin
   }
 }

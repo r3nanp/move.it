@@ -1,15 +1,10 @@
 import { FormEvent, ReactNode, useCallback } from 'react'
 import { createContext } from 'use-context-selector'
-
-import {
-  Provider,
-  signOut as handleLogout,
-  signIn as handleLogin
-} from 'next-auth/client'
+import { Provider, signOut, signIn } from 'next-auth/client'
 
 export interface AuthContextData {
-  signIn: (event: FormEvent) => void
-  signOut: (event: FormEvent) => void
+  handleLogin: (event: FormEvent) => void
+  handleSignOut: (event: FormEvent) => void
 }
 
 type AuthProviderProps = {
@@ -24,29 +19,27 @@ export function AuthProvider({
   pageProps,
   children
 }: AuthProviderProps): JSX.Element {
-  const signIn = useCallback((event: FormEvent) => {
-    event.preventDefault()
-    handleLogin('github', {
-      callbackUrl:
-        process.env.NODE_ENV === 'production'
-          ? `${process.env.PRODUCTION_URL}/exercise`
-          : 'http://localhost:3000/exercise'
-    })
-  }, [])
+  const handleLogin = useCallback(
+    async (event: FormEvent) => {
+      event.preventDefault()
 
-  const signOut = useCallback((event: FormEvent) => {
+      await signIn('github', {
+        callbackUrl: `${window.location.origin}/exercise`
+      })
+    },
+
+    []
+  )
+
+  const handleSignOut = useCallback(async (event: FormEvent) => {
     event.preventDefault()
-    handleLogout({
-      callbackUrl:
-        process.env.NODE_ENV === 'production'
-          ? `${process.env.PRODUCTION_URL}`
-          : 'http://localhost:3000/'
-    })
+
+    await signOut({ callbackUrl: '/' })
   }, [])
 
   return (
     <Provider session={pageProps}>
-      <AuthContext.Provider value={{ signIn, signOut }}>
+      <AuthContext.Provider value={{ handleLogin, handleSignOut }}>
         {children}
       </AuthContext.Provider>
     </Provider>
