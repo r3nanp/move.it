@@ -13,7 +13,7 @@ import { ChallengeBox } from 'components/ChallengeBox'
 import { ExperienceBar } from 'components/ExperienceBar'
 import { CompletedChallenges } from 'components/CompletedChallenges'
 
-import challenges from 'challenges.json'
+import challenges from '../../../challenges.json'
 import * as S from './styles'
 
 type ExerciseProps = {
