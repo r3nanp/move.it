@@ -1,8 +1,13 @@
 import { NextApiRequest, NextApiResponse } from 'next'
-import NextAuth, { User } from 'next-auth'
-import Providers from 'next-auth/providers'
+import NextAuth, { User, InitOptions } from 'next-auth'
 
-const options = {
+import Providers from 'next-auth/providers'
+import { PrismaClient } from '@prisma/client'
+import Adapters from 'next-auth/adapters'
+
+const prisma = new PrismaClient()
+
+const options: InitOptions = {
   providers: [
     Providers.GitHub({
       clientId: process.env.GITHUB_CLIENT_ID,
@@ -15,7 +20,10 @@ const options = {
 
       return Promise.resolve(session)
     }
-  }
+  },
+  adapter: Adapters.Prisma.Adapter({
+    prisma
+  })
 }
 
 export default (
