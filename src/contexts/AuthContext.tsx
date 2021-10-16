@@ -19,17 +19,13 @@ export function AuthProvider({
   pageProps,
   children
 }: AuthProviderProps): JSX.Element {
-  const handleLogin = useCallback(
-    async (event: FormEvent) => {
-      event.preventDefault()
+  const handleLogin = useCallback(async (event: FormEvent) => {
+    event.preventDefault()
 
-      await signIn('github', {
-        callbackUrl: `${window.location.origin}/exercise`
-      })
-    },
-
-    []
-  )
+    await signIn('github', {
+      callbackUrl: `${window.location.origin}/exercise`
+    })
+  }, [])
 
   const handleSignOut = useCallback(async (event: FormEvent) => {
     event.preventDefault()
