@@ -2,7 +2,7 @@ import { useAuth } from 'hooks/useAuth'
 import { SignInTemplate } from 'templates/sign-in'
 
 export default function Home(): JSX.Element {
-  const { handleLogin } = useAuth()
+  const { handleLogin, isLoading } = useAuth()
 
-  return <SignInTemplate handleLogin={handleLogin} />
+  return <SignInTemplate isLoading={isLoading} handleLogin={handleLogin} />
 }
