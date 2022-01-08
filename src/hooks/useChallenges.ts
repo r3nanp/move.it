@@ -25,10 +25,6 @@ export function useChallenges() {
     challenge => challenge.startNewChallenge
   )
 
-  const toggleIsLevelUpModalOpen = useContextSelector(
-    ChallengesContext,
-    challenge => challenge.toggleIsLevelUpModalOpen
-  )
   const currentExperience = useContextSelector(
     ChallengesContext,
     challenge => challenge.currentExperience
@@ -63,7 +59,6 @@ export function useChallenges() {
     levelUp,
     completeChallenge,
     startNewChallenge,
-    toggleIsLevelUpModalOpen,
     resetChallenge
   }
 }
