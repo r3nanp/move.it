@@ -1,18 +1,20 @@
 import { useSession } from 'next-auth/client'
 
+//* CONTEXTS
 import { CountdownProvider } from 'contexts/CountdownContext'
 import { ChallengesProvider } from 'contexts/ChallengesContext'
 import { useAuth } from 'hooks/useAuth'
 
-import { SEO } from 'components/SEO'
-import { Sidebar } from 'components/Sidebar'
-import { Profile } from 'components/Profile'
-import { Loader } from 'components/Loading'
-import { Countdown } from 'components/Countdown'
-import { ChallengeBox } from 'components/ChallengeBox'
-import { ExperienceBar } from 'components/ExperienceBar'
-import { CompletedChallenges } from 'components/CompletedChallenges'
-
+import {
+  ChallengeBox,
+  Countdown,
+  CompletedChallenges,
+  ExperienceBar,
+  Profile,
+  Spinner,
+  SEO,
+  Sidebar
+} from 'components'
 import challenges from '../../../challenges.json'
 import * as S from './styles'
 
@@ -40,7 +42,7 @@ export function ExerciseTemplate({
       <Sidebar handleExit={handleSignOut} />
       <S.Container>
         <SEO title="Move.it | Exercise" />
-        {loading && <Loader />}
+        {loading && <Spinner />}
 
         <ExperienceBar />
         <CountdownProvider>
