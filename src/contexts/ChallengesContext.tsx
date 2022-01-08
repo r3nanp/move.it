@@ -1,6 +1,5 @@
 import { ReactNode, useCallback, useEffect, useMemo, useState } from 'react'
 import { createContext } from 'use-context-selector'
-import { useToggle } from 'hooks/useToggle'
 import { setCookie } from 'utils/cookies'
 
 import { LevelUpModal } from 'components/LevelUpModal'
@@ -22,7 +21,6 @@ type ChallengesContextData = {
   startNewChallenge: () => void
   resetChallenge: () => void
   completeChallenge: () => void
-  toggleIsLevelUpModalOpen: () => void
 }
 
 type ProviderProps = {
@@ -39,6 +37,7 @@ export function ChallengesProvider({
   children,
   ...rest
 }: ProviderProps): JSX.Element {
+  //* STATES
   const [level, setLevel] = useState(rest.level ?? 1)
   const [currentExperience, setCurrentExperience] = useState(
     rest.currentExperience ?? 0
@@ -46,11 +45,10 @@ export function ChallengesProvider({
   const [challengesCompleted, setChallengesCompleted] = useState(
     rest.challengesCompleted ?? 0
   )
-
   const [activeChallenge, setActiveChallenge] = useState<ChallengeProps | null>(
     null
   )
-  const [isLevelUpModalOpen, toggleIsLevelUpModalOpen] = useToggle(false)
+  const [isLevelUpModalOpen, setIsLevelUpModalOpen] = useState(false)
 
   const experienceToNextLevel = useMemo(() => Math.pow((level + 1) * 4, 2), [
     level
@@ -68,8 +66,8 @@ export function ChallengesProvider({
 
   const levelUp = useCallback(() => {
     setLevel(level + 1)
-    toggleIsLevelUpModalOpen()
-  }, [level, toggleIsLevelUpModalOpen])
+    setIsLevelUpModalOpen(!isLevelUpModalOpen)
+  }, [isLevelUpModalOpen, level])
 
   const startNewChallenge = useCallback(() => {
     const randomChallengesIndex = Math.floor(
@@ -89,9 +87,9 @@ export function ChallengesProvider({
     }
   }, [rest.challenges])
 
-  function resetChallenge() {
+  const resetChallenge = useCallback(() => {
     setActiveChallenge(null)
-  }
+  }, [])
 
   const completeChallenge = useCallback(() => {
     if (!activeChallenge) return
@@ -121,22 +119,26 @@ export function ChallengesProvider({
     <ChallengesContext.Provider
       {...rest}
       value={{
+        level,
         isLevelUpModalOpen,
         currentExperience,
         challengesCompleted,
-        level,
         activeChallenge,
         experienceToNextLevel,
         levelUp,
         completeChallenge,
         startNewChallenge,
-        resetChallenge,
-        toggleIsLevelUpModalOpen
+        resetChallenge
       }}
     >
       {children}
 
-      {isLevelUpModalOpen && <LevelUpModal level={level} />}
+      {isLevelUpModalOpen && (
+        <LevelUpModal
+          level={level}
+          closeModal={() => setIsLevelUpModalOpen(!isLevelUpModalOpen)}
+        />
+      )}
     </ChallengesContext.Provider>
   )
 }
