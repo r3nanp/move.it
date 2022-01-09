@@ -1,14 +1,18 @@
 import { FormEvent } from 'react'
 import Image from 'next/image'
-import { SEO } from 'components/SEO'
+import { SEO, Button } from 'components'
 
 import * as S from './styles'
 
 type SignInProps = {
   handleLogin: (event: FormEvent) => void
+  isLoading: boolean
 }
 
-export function SignInTemplate({ handleLogin }: SignInProps): JSX.Element {
+export function SignInTemplate({
+  handleLogin,
+  isLoading
+}: SignInProps): JSX.Element {
   return (
     <S.Container>
       <SEO title="Move.it | Login" />
@@ -34,7 +38,9 @@ export function SignInTemplate({ handleLogin }: SignInProps): JSX.Element {
         </p>
 
         <div className="sign-in">
-          <button onClick={handleLogin}>Faça login</button>
+          <Button variant="green" isLoading={isLoading} onClick={handleLogin}>
+            Faça login
+          </Button>
         </div>
       </S.RightContent>
     </S.Container>

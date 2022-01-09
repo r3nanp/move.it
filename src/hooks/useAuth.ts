@@ -7,8 +7,10 @@ export function useAuth() {
     AuthContext,
     auth => auth.handleSignOut
   )
+  const isLoading = useContextSelector(AuthContext, auth => auth.isLoading)
 
   return {
+    isLoading,
     handleSignOut,
     handleLogin
   }

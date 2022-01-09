@@ -1,5 +1,5 @@
 import { ReactNode, ButtonHTMLAttributes } from 'react'
-import { Loader } from 'components/Loader'
+import { Spinner } from 'components'
 
 import * as S from './styles'
 
@@ -9,12 +9,15 @@ export type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   variant: 'green' | 'failed' | 'completed' | 'finished'
 }
 
-function Button({ children, isLoading, variant, ...rest }: ButtonProps) {
+export const Button = ({
+  children,
+  isLoading,
+  variant,
+  ...rest
+}: ButtonProps) => {
   return (
     <S.Container variant={variant} {...rest}>
-      {isLoading ? <Loader /> : children}
+      {isLoading ? <Spinner /> : children}
     </S.Container>
   )
 }
-
-export default Button

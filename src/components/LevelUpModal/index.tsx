@@ -1,15 +1,16 @@
-import { useToggle } from 'hooks/useToggle'
 import * as S from './styles'
 
 export type LevelUpModalProps = {
   level: number
+  closeModal: () => void
 }
 
-export function LevelUpModal({ level }: LevelUpModalProps): JSX.Element {
-  const [isOpen, toggleIsOpen] = useToggle(false)
-
+export function LevelUpModal({
+  level,
+  closeModal
+}: LevelUpModalProps): JSX.Element {
   return (
-    <S.Overlay onClick={toggleIsOpen} aria-hidden={!isOpen}>
+    <S.Overlay onClick={closeModal}>
       <S.Container>
         <header>{level}</header>
 
@@ -23,12 +24,7 @@ export function LevelUpModal({ level }: LevelUpModalProps): JSX.Element {
           </button>
         </footer>
 
-        <button
-          type="button"
-          onClick={toggleIsOpen}
-          aria-hidden={!isOpen}
-          className="close"
-        >
+        <button type="button" onClick={closeModal} className="close">
           <img src="/icons/close.svg" alt="Fechar modal" />
         </button>
       </S.Container>
