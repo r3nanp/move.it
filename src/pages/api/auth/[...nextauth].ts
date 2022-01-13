@@ -1,17 +1,18 @@
 import { NextApiRequest, NextApiResponse } from 'next'
 import NextAuth, { User, InitOptions } from 'next-auth'
-
 import Providers from 'next-auth/providers'
 import { PrismaClient } from '@prisma/client'
 import Adapters from 'next-auth/adapters'
+
+import { GITHUB_CLIENT_ID, GITHUB_CLIENT_SECRET } from 'constants/auth'
 
 const prisma = new PrismaClient()
 
 const options: InitOptions = {
   providers: [
     Providers.GitHub({
-      clientId: process.env.GITHUB_CLIENT_ID,
-      clientSecret: process.env.GITHUB_CLIENT_SECRET
+      clientId: GITHUB_CLIENT_ID,
+      clientSecret: GITHUB_CLIENT_SECRET
     })
   ],
   callbacks: {

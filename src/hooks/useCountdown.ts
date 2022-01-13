@@ -6,12 +6,10 @@ export function useCountdown() {
     CountdownContext,
     countdown => countdown.startCountdown
   )
-
   const resetCountdown = useContextSelector(
     CountdownContext,
     countdown => countdown.resetCountdown
   )
-
   const isActive = useContextSelector(
     CountdownContext,
     countdown => countdown.isActive
