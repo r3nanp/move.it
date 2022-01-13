@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router'
 import { useSession } from 'next-auth/client'
 
 //* CONTEXTS
@@ -15,22 +16,26 @@ import {
   SEO,
   Sidebar
 } from 'components'
-import challenges from '../../../challenges.json'
+import { User } from 'types/User'
+import challenges from 'data/challenges.json'
 import * as S from './styles'
 
 type ExerciseProps = {
   level: number
+  user: User
   currentExperience: number
   challengesCompleted: number
 }
 
 export function ExerciseTemplate({
+  user,
   level,
   currentExperience,
   challengesCompleted
 }: ExerciseProps): JSX.Element {
   const [session, loading] = useSession()
   const { handleSignOut } = useAuth()
+  const { push } = useRouter()
 
   return (
     <ChallengesProvider
@@ -39,27 +44,27 @@ export function ExerciseTemplate({
       challengesCompleted={challengesCompleted}
       challenges={challenges}
     >
-      <Sidebar handleExit={handleSignOut} />
+      <Sidebar
+        onClickClose={handleSignOut}
+        onClickHome={() => push('/')}
+        onClickLeaderboard={() => push('/leaderboard')}
+      />
       <S.Container>
         <SEO title="Move.it | Exercise" />
         {loading && <Spinner />}
 
         <ExperienceBar />
+
         <CountdownProvider>
           <S.Content>
-            <div>
-              {session && (
-                <Profile
-                  imageUrl={session.user.picture}
-                  name={session.user.name}
-                />
-              )}
+            <section id="profile">
+              {session && <Profile imageUrl={user.avatar} name={user.name} />}
               <CompletedChallenges />
               <Countdown />
-            </div>
-            <div>
+            </section>
+            <section id="challenge-box">
               <ChallengeBox />
-            </div>
+            </section>
           </S.Content>
         </CountdownProvider>
       </S.Container>
