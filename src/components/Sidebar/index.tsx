@@ -1,24 +1,21 @@
-import { FormEvent, useCallback } from 'react'
+import { FormEvent } from 'react'
 import Image from 'next/image'
-import Router from 'next/router'
 import { useTheme } from 'hooks/useTheme'
 
 import * as S from './styles'
 
 export type SidebarProps = {
-  handleExit: (event: FormEvent) => void
+  onClickClose: (event: FormEvent) => void
+  onClickLeaderboard: () => void
+  onClickHome: () => void
 }
 
-export function Sidebar({ handleExit }: SidebarProps): JSX.Element {
+export function Sidebar({
+  onClickClose,
+  onClickHome,
+  onClickLeaderboard
+}: SidebarProps): JSX.Element {
   const { switchTheme, theme } = useTheme()
-
-  const handleGoExercise = useCallback(() => {
-    Router.push('/exercise')
-  }, [])
-
-  const handleGoLeaderboard = useCallback(() => {
-    Router.push('/leaderboard')
-  }, [])
 
   return (
     <S.Bar>
@@ -32,9 +29,9 @@ export function Sidebar({ handleExit }: SidebarProps): JSX.Element {
         />
       </header>
       <div className="icons">
-        <S.HomeIcon onClick={handleGoExercise} />
-        <S.AwardIcon onClick={handleGoLeaderboard} />
-        <S.ExitIcon onClick={handleExit} />
+        <S.HomeIcon onClick={onClickHome} />
+        <S.AwardIcon onClick={onClickLeaderboard} />
+        <S.ExitIcon onClick={onClickClose} />
       </div>
       <footer>
         {theme === 'light' ? (
