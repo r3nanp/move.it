@@ -1,16 +1,14 @@
 import { GetServerSideProps } from 'next'
 import { User } from 'types/User'
+import { ChallengeProps } from 'types/Challenges'
 
 import { ExerciseTemplate } from 'templates/exercise'
 import { protectedRoutes } from 'utils/protected-routes'
-import { getCookie } from 'utils/cookies'
 import { prisma } from 'utils/prisma'
 
 type ExerciseProps = {
   user: User
-  level: number
-  currentExperience: number
-  challengesCompleted: number
+  challenges: ChallengeProps[]
 }
 
 export default function ExercisePage(props: ExerciseProps): JSX.Element {
@@ -24,29 +22,39 @@ export const getServerSideProps: GetServerSideProps = async context => {
     return { props: {} }
   }
 
-  const level = getCookie('level', context)
-  const currentExperience = getCookie('currentExperience', context)
-  const challengesCompleted = getCookie('challengesCompleted', context)
-
-  const userData = await prisma.user.findUnique({
+  const userAccessToken = await prisma.session.findUnique({
     where: {
-      email: session.user.email
+      accessToken: session.accessToken
     }
   })
 
-  const user = {
-    id: userData.id,
-    name: userData.name,
-    email: userData.email,
-    avatar: userData.image
+  const user = await prisma.user.findUnique({
+    where: {
+      id: userAccessToken.userId
+    }
+  })
+
+  const challenges = await prisma.challenges.findMany()
+
+  const formattedChallenges = challenges.map(challenge => ({
+    type: challenge.type,
+    amount: challenge.amount,
+    description: challenge.description
+  }))
+
+  const formattedUser = {
+    name: user.name,
+    email: user.email,
+    avatar: user.image,
+    level: user.level,
+    challengesCompleted: user.challengesCompleted,
+    currentExperience: user.currentExperience
   }
 
   return {
     props: {
-      user,
-      level: Number(level),
-      currentExperience: Number(currentExperience),
-      challengesCompleted: Number(challengesCompleted)
+      user: formattedUser,
+      challenges: formattedChallenges
     }
   }
 }

@@ -26,13 +26,12 @@ export function ThemeProvider({ children }: ThemeProps): JSX.Element {
   }, [theme])
 
   useEffect(() => {
-    getStorageItem('theme')
-  }, [])
+    const value = getStorageItem('theme')
 
-  useEffect(() => {
-    setStorageItem('theme', theme)
+    if (value !== theme) {
+      setStorageItem('theme', theme)
+    }
   }, [theme])
-
   return (
     <ThemeContext.Provider value={{ switchTheme, theme }}>
       <ThemeStyledProvider theme={currentTheme}>

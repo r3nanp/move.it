@@ -3,12 +3,7 @@ import { createContext } from 'use-context-selector'
 import { setCookie } from 'utils/cookies'
 
 import { LevelUpModal } from 'components/LevelUpModal'
-
-type ChallengeProps = {
-  type: string
-  description: string
-  amount: number
-}
+import { ChallengeProps } from 'types/Challenges'
 
 type ChallengesContextData = {
   challengesCompleted: number

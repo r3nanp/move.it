@@ -1,4 +1,5 @@
 import { useCallback } from 'react'
+import Image from 'next/image'
 import { useChallenges } from 'hooks/useChallenges'
 import { useCountdown } from 'hooks/useCountdown'
 
@@ -26,7 +27,12 @@ export function ChallengeBox(): JSX.Element {
           <header>Ganhe {activeChallenge.amount} xp</header>
 
           <div className="challenge">
-            <img src={`icons/${activeChallenge.type}.svg`} alt="Body" />
+            <Image
+              src={`/icons/${activeChallenge.type.toLocaleLowerCase()}.svg`}
+              alt="Body"
+              width={88}
+              height={88}
+            />
             <strong>Novo desafio</strong>
             <p>{activeChallenge.description}</p>
           </div>

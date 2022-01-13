@@ -42,23 +42,43 @@ model Session {
 }
 
 model User {
-  id            String    @id @default(uuid())
-  name          String?
-  email         String?   @unique
-  emailVerified DateTime? @map(name: "email_verified")
-  image         String?
-  createdAt     DateTime  @default(now()) @map(name: "created_at")
-  updatedAt     DateTime  @default(now()) @map(name: "updated_at")
+  id                  String    @id @default(uuid())
+  name                String?
+  email               String?   @unique
+  emailVerified       DateTime? @map(name: "email_verified")
+  image               String?
+  level               Int       @default(1)
+  currentExperience   Int       @default(0) @map(name: "current_experience")
+  challengesCompleted Int       @default(0) @map(name: "challenges_completed")
+  createdAt           DateTime  @default(now()) @map(name: "created_at")
+  updatedAt           DateTime  @default(now()) @map(name: "updated_at")
 
   @@map(name: "users")
 }
 
 model VerificationRequest {
-  id         Int      @default(autoincrement()) @id
+  id         Int      @id @default(autoincrement())
   identifier String
   token      String   @unique
   expires    DateTime
   createdAt  DateTime @default(now()) @map(name: "created_at")
   updatedAt  DateTime @default(now()) @map(name: "updated_at")
+
   @@map(name: "verification_requests")
+}
+
+enum Types {
+  BODY
+  EYE
+}
+
+model Challenges {
+  id          String   @id @default(uuid())
+  type        Types    @default(EYE)
+  amount      Int
+  description String
+  createdAt   DateTime @default(now()) @map(name: "created_at")
+  updatedAt   DateTime @default(now()) @map(name: "updated_at")
+
+  @@map("challenges")
 }

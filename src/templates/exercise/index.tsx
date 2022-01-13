@@ -17,21 +17,17 @@ import {
   Sidebar
 } from 'components'
 import { User } from 'types/User'
-import challenges from 'data/challenges.json'
+import { ChallengeProps } from 'types/Challenges'
 import * as S from './styles'
 
 type ExerciseProps = {
-  level: number
   user: User
-  currentExperience: number
-  challengesCompleted: number
+  challenges: ChallengeProps[]
 }
 
 export function ExerciseTemplate({
   user,
-  level,
-  currentExperience,
-  challengesCompleted
+  challenges
 }: ExerciseProps): JSX.Element {
   const [session, loading] = useSession()
   const { handleSignOut } = useAuth()
@@ -39,9 +35,9 @@ export function ExerciseTemplate({
 
   return (
     <ChallengesProvider
-      level={level}
-      currentExperience={currentExperience}
-      challengesCompleted={challengesCompleted}
+      level={user.level}
+      currentExperience={user.currentExperience}
+      challengesCompleted={user.challengesCompleted}
       challenges={challenges}
     >
       <Sidebar
