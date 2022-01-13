@@ -5,7 +5,9 @@
   "author": "Renan Pereira <renanmol87@gmail.com>",
   "keywords": [
     "exercise",
-    "move"
+    "move",
+    "focus",
+    "pomodoro"
   ],
   "license": "MIT",
   "repository": {
@@ -15,17 +17,30 @@
   "bugs": {
     "url": "https://github.com/r3nanp/move.it/issues"
   },
+  "lint-staged": {
+    "src/**/*.{js,ts,tsx}": [
+      "yarn lint",
+      "yarn test --bail --findRelatedTests"
+    ]
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "build-storybook": "build-storybook -s ./public",
     "lint": "eslint src --max-warnings=0",
     "postinstall": "husky install",
+    "migrate": "prisma migrate dev",
+    "migrate:run": "prisma migrate deploy",
     "test": "jest --maxWorkers=25%",
     "test:ci": "jest --runInBand",
     "test:watch": "jest --watch --maxWorkers=15%",
-    "storybook": "start-storybook -s ./public -p 6006"
+    "storybook": "start-storybook -s ./public -p 6006",
+    "build-storybook": "build-storybook -s ./public"
   },
   "dependencies": {
     "@prisma/client": "^3.2.1",
@@ -44,8 +59,8 @@
   },
   "devDependencies": {
     "@babel/core": "^7.14.8",
-    "@commitlint/cli": "^12.0.1",
-    "@commitlint/config-conventional": "^12.0.1",
+    "@commitlint/cli": "^16.0.2",
+    "@commitlint/config-conventional": "^16.0.0",
     "@storybook/addon-actions": "^6.3.5",
     "@storybook/addon-essentials": "^6.3.5",
     "@storybook/addon-links": "^6.3.5",
@@ -62,6 +77,8 @@
     "babel-jest": "^26.6.3",
     "babel-loader": "^8.2.2",
     "babel-plugin-styled-components": "^1.12.0",
+    "commitizen": "^4.2.4",
+    "cz-conventional-changelog": "^3.3.0",
     "eslint": "^7.20.0",
     "eslint-config-next": "^11.0.1",
     "eslint-config-prettier": "^8.0.0",
@@ -74,9 +91,9 @@
     "eslint-plugin-react": "^7.22.0",
     "eslint-plugin-react-hooks": "^4.2.0",
     "eslint-plugin-testing-library": "^3.10.2",
-    "husky": "^5.1.2",
+    "husky": "^7.0.4",
     "jest": "^26.6.3",
-    "lint-staged": "^10.5.4",
+    "lint-staged": "^12.1.7",
     "prettier": "^2.2.1",
     "prisma": "^3.2.1",
     "ts-jest": "^26.5.4",
