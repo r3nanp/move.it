@@ -1,24 +1,24 @@
 import { User } from 'types/User'
 import { prisma } from 'utils/prisma'
 
-export const getUser = async (accessToken: string) => {
-  const user = await prisma.session.findUnique({
+export const getSession = async (accessToken: string) => {
+  const session = await prisma.session.findUnique({
     where: {
       accessToken
     }
   })
 
-  return user
+  return session
 }
 
-export const getUserExperience = async (id: string) => {
-  const xp = await prisma.user.findUnique({
+export const getUser = async (id: string) => {
+  const user = await prisma.user.findUnique({
     where: {
       id
     }
   })
 
-  return xp
+  return user
 }
 
 type UserData = Omit<User, 'email' | 'avatar' | 'name'> & {
