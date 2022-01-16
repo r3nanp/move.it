@@ -3,6 +3,6 @@ export type User = {
   name: string
   avatar: string
   currentExperience: number
-  level: number
   challengesCompleted: number
+  level: number
 }

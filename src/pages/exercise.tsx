@@ -1,10 +1,11 @@
 import { GetServerSideProps } from 'next'
-import { User } from 'types/User'
-import { ChallengeProps } from 'types/Challenges'
+import type { User } from 'types/User'
+import type { ChallengeProps } from 'types/Challenges'
 
 import { ExerciseTemplate } from 'templates/exercise'
 import { protectedRoutes } from 'utils/protected-routes'
 import { prisma } from 'utils/prisma'
+import { getUser } from 'backend/queries/user-query'
 
 type ExerciseProps = {
   user: User
@@ -28,33 +29,29 @@ export const getServerSideProps: GetServerSideProps = async context => {
     }
   })
 
-  const user = await prisma.user.findUnique({
-    where: {
-      id: userAccessToken.userId
-    }
-  })
+  const prismaUser = await getUser(userAccessToken.userId)
 
-  const challenges = await prisma.challenges.findMany()
+  const prismaChallenges = await prisma.challenges.findMany()
 
-  const formattedChallenges = challenges.map(challenge => ({
+  const challenges = prismaChallenges.map(challenge => ({
     type: challenge.type,
     amount: challenge.amount,
     description: challenge.description
   }))
 
-  const formattedUser = {
-    name: user.name,
-    email: user.email,
-    avatar: user.image,
-    level: user.level,
-    challengesCompleted: user.challengesCompleted,
-    currentExperience: user.currentExperience
+  const user = {
+    name: prismaUser.name,
+    email: prismaUser.email,
+    avatar: prismaUser.image,
+    level: prismaUser.level,
+    challengesCompleted: prismaUser.challengesCompleted,
+    currentExperience: prismaUser.currentExperience
   }
 
   return {
     props: {
-      user: formattedUser,
-      challenges: formattedChallenges
+      user,
+      challenges
     }
   }
 }

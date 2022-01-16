@@ -1,11 +1,9 @@
 import { useRouter } from 'next/router'
 import { useSession } from 'next-auth/client'
 
-//* CONTEXTS
 import { CountdownProvider } from 'contexts/CountdownContext'
 import { ChallengesProvider } from 'contexts/ChallengesContext'
 import { useAuth } from 'hooks/useAuth'
-
 import {
   ChallengeBox,
   Countdown,
@@ -16,8 +14,8 @@ import {
   SEO,
   Sidebar
 } from 'components'
-import { User } from 'types/User'
-import { ChallengeProps } from 'types/Challenges'
+import type { User } from 'types/User'
+import type { ChallengeProps } from 'types/Challenges'
 import * as S from './styles'
 
 type ExerciseProps = {
