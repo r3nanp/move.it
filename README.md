@@ -3,7 +3,7 @@
 </p>
 
 # Move it
-> A app to make you move! Written in Next.js
+> An app to make you move! Written in Next.js with Prisma ORM
 
 ---
 
@@ -22,40 +22,67 @@
 
 - Next.js
 - Typescript
+- Prisma
 - Jest
 - Testing Library
 - styled-components
 - next-auth
-- Storybook
+- storybook
 - nookies
-- react-icons
-- husky
 
 # 🎉 Contributing
 
 [Check this step by step](CONTRIBUTING.md)
 
-# 🤔 How to run
+# 👷‍♂️ Installation
 
-Clone repository:
-```bash
-$ git clone https://github.com/r3nanp/move.it.git
+**You need to install [Node.js](https://nodejs.org/en/download/) and [Yarn](https://yarnpkg.com/) first, then in order to clone the project via HTTPS, run this command:**
+
+```sh
+git clone https://github.com/r3nanp/sellapi.git
 ```
 
-At the root of the project, run:
-```bash
-yarn or npm install
+SSH URLs provide access to a Git repository via SSH, a secure protocol. If you use a SSH key registered in your Github account, clone the project using this command:
+
+```sh
+git clone git@github.com:r3nanp/sellapi.git
 ```
 
-Copy the `.env.example` file to `.env` and fill the values:
-```bash
-cp .env.example .env.local
+**Install dependencies**
+
+```sh
+yarn install
 ```
+
+Or
+
+```sh
+npm install
+```
+
+Create your enviroment variables based on the examples of ```.env.example```
+
+```sh
+cp .env.example .env
+```
+
+After copying the examples, make sure to fill the variables with new values.
+
+**Setup a database**
+
+Install [Postgres](https://www.postgresql.org/) to create a database or if you have [Docker](https://www.docker.com/) in your machine, fill the environment values related to database configurations and then run the following commands in order to create a Postgres container.
+
+```docker-compose up -d```
+
+# 🏃 Getting Started
+
+Run the transactions in order to configure the database schema
+
+```yarn migrate:run```
 
 Run the following command in order to start the application in a development environment:
-```bash
-yarn dev or npm run dev
-```
+
+```yarn dev```
 
 # 🎨 Layout
 
