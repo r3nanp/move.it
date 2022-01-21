@@ -13,4 +13,8 @@ export const getServerSideProps: GetServerSideProps = async context => {
   if (!session) {
     return { props: {} }
   }
+
+  return {
+    props: {}
+  }
 }

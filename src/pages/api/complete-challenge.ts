@@ -32,9 +32,7 @@ async function updateUser(req: NextApiRequest, res: NextApiResponse) {
 
     return res.json({ updatedUser })
   } catch (e) {
-    console.error(e)
-
-    res.status(500).json({ status: 'error', message: 'Internal Server Error' })
+    res.status(400).json(e)
   }
 }
 
@@ -48,7 +46,7 @@ export async function handler(
       .status(200)
       .json({ ...request.body, method: request.method })
   } catch (e) {
-    return response.status(400).json(e)
+    return response.status(500).json(e)
   }
 }
 
