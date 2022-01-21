@@ -44,6 +44,11 @@ export function useChallenges() {
     challenge => challenge.completeChallenge
   )
 
+  const isLoading = useContextSelector(
+    ChallengesContext,
+    challenge => challenge.isLoading
+  )
+
   const resetChallenge = useContextSelector(
     ChallengesContext,
     challenge => challenge.resetChallenge
@@ -56,6 +61,7 @@ export function useChallenges() {
     challengesCompleted,
     currentExperience,
     experienceToNextLevel,
+    isLoading,
     levelUp,
     completeChallenge,
     startNewChallenge,
