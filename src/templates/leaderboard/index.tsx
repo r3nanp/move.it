@@ -1,14 +1,16 @@
-import { Sidebar } from 'components/Sidebar'
-import { useAuth } from 'hooks/useAuth'
-
+import { Container, SEO } from 'components'
 import * as S from './styles'
 
 export function LeaderboardTemplate() {
-  const { handleSignOut } = useAuth()
-
   return (
-    <S.Container>
-      <Sidebar handleExit={handleSignOut} />
-    </S.Container>
+    <Container>
+      <SEO title="Move.it | Leaderboard" />
+
+      <S.Leaderboard>
+        <div className="progress">
+          <h1>Leaderboard in progress</h1>
+        </div>
+      </S.Leaderboard>
+    </Container>
   )
 }
