@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { Button as ButtonC } from 'components'
 
 export const Container = styled.section`
   height: 100%;
@@ -87,24 +88,7 @@ type IsFailedProps = {
   isFailed: boolean
 }
 
-export const Button = styled.button<IsFailedProps>`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  color: ${props => (props.isFailed ? 'var(--red)' : 'var(--green)')};
-
-  border: 0;
-  border-radius: 5px;
-
-  font-size: 1rem;
-  font-weight: 600;
-
-  background: ${props =>
-    props.isFailed ? 'var(--failed-button)' : 'var(--completed-button)'};
-
-  transition: all 0.2s ease-in-out;
-
+export const Button = styled(ButtonC)<IsFailedProps>`
   &:hover {
     background: ${props => (props.isFailed ? 'var(--red)' : 'var(--green)')};
     color: var(--white);

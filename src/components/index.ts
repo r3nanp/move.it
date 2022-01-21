@@ -1,5 +1,6 @@
 export * from './Button'
 export * from './ChallengeBox'
+export * from './Container'
 export * from './CompletedChallenges'
 export * from './Countdown'
 export * from './ExperienceBar'
