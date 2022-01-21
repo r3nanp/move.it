@@ -1,4 +1,5 @@
 import { FormEvent } from 'react'
+import { useRouter } from 'next/router'
 import Image from 'next/image'
 import { useTheme } from 'hooks/useTheme'
 
@@ -6,15 +7,10 @@ import * as S from './styles'
 
 export type SidebarProps = {
   onClickClose: (event: FormEvent) => void
-  onClickLeaderboard: () => void
-  onClickHome: () => void
 }
 
-export function Sidebar({
-  onClickClose,
-  onClickHome,
-  onClickLeaderboard
-}: SidebarProps): JSX.Element {
+export function Sidebar({ onClickClose }: SidebarProps): JSX.Element {
+  const { push } = useRouter()
   const { switchTheme, theme } = useTheme()
 
   return (
@@ -29,8 +25,8 @@ export function Sidebar({
         />
       </header>
       <div className="icons">
-        <S.HomeIcon onClick={onClickHome} />
-        <S.AwardIcon onClick={onClickLeaderboard} />
+        <S.HomeIcon onClick={() => push('/exercise')} />
+        <S.AwardIcon onClick={() => push('/leaderboard')} />
         <S.ExitIcon onClick={onClickClose} />
       </div>
       <footer>
