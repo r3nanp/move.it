@@ -1,18 +1,17 @@
-import { useRouter } from 'next/router'
 import { useSession } from 'next-auth/client'
 
+//* CUSTOM IMPORTS
 import { CountdownProvider } from 'contexts/CountdownContext'
 import { ChallengesProvider } from 'contexts/ChallengesContext'
-import { useAuth } from 'hooks/useAuth'
 import {
   ChallengeBox,
   Countdown,
+  Container,
   CompletedChallenges,
   ExperienceBar,
   Profile,
   Spinner,
-  SEO,
-  Sidebar
+  SEO
 } from 'components'
 import type { User } from 'types/User'
 import type { ChallengeProps } from 'types/Challenges'
@@ -28,22 +27,16 @@ export function ExerciseTemplate({
   challenges
 }: ExerciseProps): JSX.Element {
   const [session, loading] = useSession()
-  const { handleSignOut } = useAuth()
-  const { push } = useRouter()
 
   return (
     <ChallengesProvider
-      level={user.level}
-      currentExperience={user.currentExperience}
-      challengesCompleted={user.challengesCompleted}
+      level={user?.level}
+      accessToken={session?.accessToken}
+      currentExperience={user?.currentExperience}
+      challengesCompleted={user?.challengesCompleted}
       challenges={challenges}
     >
-      <Sidebar
-        onClickClose={handleSignOut}
-        onClickHome={() => push('/')}
-        onClickLeaderboard={() => push('/leaderboard')}
-      />
-      <S.Container>
+      <Container>
         <SEO title="Move.it | Exercise" />
         {loading && <Spinner />}
 
@@ -61,7 +54,7 @@ export function ExerciseTemplate({
             </section>
           </S.Content>
         </CountdownProvider>
-      </S.Container>
+      </Container>
     </ChallengesProvider>
   )
 }
