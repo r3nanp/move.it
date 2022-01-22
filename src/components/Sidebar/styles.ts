@@ -16,12 +16,8 @@ const iconsCss = css`
   cursor: pointer;
   transition: all 0.2s;
 
-  &:active {
-    fill: var(--green);
-  }
-
   &:hover {
-    opacity: 0.7;
+    fill: var(--green);
   }
 `
 

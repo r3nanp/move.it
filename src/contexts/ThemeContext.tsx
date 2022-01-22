@@ -23,8 +23,6 @@ export function ThemeProvider({ children }: ThemeProps): JSX.Element {
 
   const prefer = prefersDarkMode ? 'light' : 'dark'
 
-  console.log(prefer)
-
   const [theme, setTheme] = useState<ThemeName>(prefer)
   const currentTheme = themes[theme]
 
