@@ -1,5 +1,7 @@
 import { useState, useEffect, ReactNode, useMemo, useCallback } from 'react'
 import { createContext, useContext } from 'use-context-selector'
+
+//* CUSTOM IMPORTS
 import { ChallengesContext } from './ChallengesContext'
 
 type CountdownContextData = {
@@ -58,10 +60,12 @@ export function CountdownProvider({ children }: CountdownProps): JSX.Element {
   return (
     <CountdownContext.Provider
       value={{
+        //* STATES
         minutes,
         seconds,
         hasFinished,
         isActive,
+        //* FUNCTIONS
         startCountdown,
         resetCountdown
       }}

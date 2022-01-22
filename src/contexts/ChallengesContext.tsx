@@ -3,6 +3,7 @@ import { createContext } from 'use-context-selector'
 import axios from 'axios'
 import toast from 'react-hot-toast'
 
+//* CUSTOM IMPORTS
 import { LevelUpModal } from 'components/LevelUpModal'
 import { ChallengeProps } from 'types/Challenges'
 
@@ -143,7 +144,6 @@ export function ChallengesProvider({
         activeChallenge,
         experienceToNextLevel,
         isLoading,
-
         //* FUNCTIONS
         levelUp,
         completeChallenge,
@@ -152,7 +152,6 @@ export function ChallengesProvider({
       }}
     >
       {children}
-
       {isLevelUpModalOpen && (
         <LevelUpModal
           level={level}

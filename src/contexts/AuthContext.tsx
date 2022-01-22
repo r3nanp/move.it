@@ -1,4 +1,5 @@
 import { FormEvent, ReactNode, useCallback, useState } from 'react'
+import { AppProps } from 'next/app'
 import { createContext } from 'use-context-selector'
 import { Provider, signOut, signIn } from 'next-auth/client'
 
@@ -8,10 +9,8 @@ export interface AuthContextData {
   handleSignOut: (event: FormEvent) => void
 }
 
-type AuthProviderProps = {
+type AuthProviderProps = Pick<AppProps, 'pageProps'> & {
   children: ReactNode
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  pageProps: any
 }
 
 export const AuthContext = createContext({} as AuthContextData)
