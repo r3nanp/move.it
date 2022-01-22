@@ -2,6 +2,7 @@ import { ReactNode, useCallback, useEffect, useState } from 'react'
 import { ThemeProvider as ThemeStyledProvider } from 'styled-components'
 import { createContext } from 'use-context-selector'
 
+//* CUSTOM IMPORTS
 import { GlobalStyles } from 'styles/global'
 import { ThemeName, themes } from 'styles/theme'
 import { usePrefersDarkMode } from 'hooks/usePrefersDarkMode'
