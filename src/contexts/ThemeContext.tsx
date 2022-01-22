@@ -2,9 +2,10 @@ import { ReactNode, useCallback, useEffect, useState } from 'react'
 import { ThemeProvider as ThemeStyledProvider } from 'styled-components'
 import { createContext } from 'use-context-selector'
 
-import { getStorageItem, setStorageItem } from 'utils/local-storage'
+//* CUSTOM IMPORTS
 import { GlobalStyles } from 'styles/global'
 import { ThemeName, themes } from 'styles/theme'
+import { getStorageItem, setStorageItem } from 'utils/local-storage'
 
 export type ThemeContextData = {
   switchTheme: () => void

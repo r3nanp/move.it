@@ -6,15 +6,12 @@ import { PrismaClient } from '@prisma/client'
 // Learn more:
 // https://pris.ly/d/help/next-js-best-practices
 
-let prisma: PrismaClient
-
-if (process.env.NODE_ENV === 'production') {
-  prisma = new PrismaClient()
-} else {
-  if (!global.prisma) {
-    global.prisma = new PrismaClient()
-  }
-  prisma = global.prisma
+declare global {
+  // allow global `var` declarations
+  /* eslint-disable no-var */
+  var prisma: PrismaClient | undefined
 }
 
-export { prisma }
+export const prisma = global.prisma || new PrismaClient()
+
+if (process.env.NODE_ENV !== 'production') global.prisma = prisma
