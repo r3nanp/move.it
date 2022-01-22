@@ -5,6 +5,7 @@ import { createContext } from 'use-context-selector'
 import { getStorageItem, setStorageItem } from 'utils/local-storage'
 import { GlobalStyles } from 'styles/global'
 import { ThemeName, themes } from 'styles/theme'
+import { usePrefersDarkMode } from 'hooks/usePrefersDarkMode'
 
 export type ThemeContextData = {
   switchTheme: () => void
@@ -18,20 +19,30 @@ type ThemeProps = {
 export const ThemeContext = createContext({} as ThemeContextData)
 
 export function ThemeProvider({ children }: ThemeProps): JSX.Element {
-  const [theme, setTheme] = useState<ThemeName>('light')
-  const currentTheme = themes[theme]
+  const prefersDarkMode = usePrefersDarkMode()
 
-  const switchTheme = useCallback(() => {
-    setTheme(theme === 'light' ? 'dark' : 'light')
-  }, [theme])
+  const prefer = prefersDarkMode ? 'light' : 'dark'
+
+  console.log(prefer)
+
+  const [theme, setTheme] = useState<ThemeName>(prefer)
+  const currentTheme = themes[theme]
 
   useEffect(() => {
     const value = getStorageItem('theme')
+    setTheme(value === 'light' ? 'light' : 'dark')
+  }, [theme])
 
-    if (value !== theme) {
-      setStorageItem('theme', theme)
+  const switchTheme = useCallback(() => {
+    if (theme === 'dark') {
+      setTheme(theme === 'dark' ? 'light' : 'dark')
+      setStorageItem('theme', 'light')
+    } else {
+      setTheme(theme === 'light' ? 'dark' : 'light')
+      setStorageItem('theme', 'dark')
     }
   }, [theme])
+
   return (
     <ThemeContext.Provider value={{ switchTheme, theme }}>
       <ThemeStyledProvider theme={currentTheme}>

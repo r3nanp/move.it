@@ -1,6 +1,5 @@
 import styled, { css } from 'styled-components'
-import { BiHomeAlt, BiMedal, BiMoon, BiSun } from 'react-icons/bi'
-import { ImExit } from 'react-icons/im'
+import { BiHomeAlt, BiMedal, BiMoon, BiSun, BiExit } from 'react-icons/bi'
 
 const iconsCss = css`
   display: flex;
@@ -56,7 +55,7 @@ export const AwardIcon = styled(BiMedal)`
   ${iconsCss}
 `
 
-export const ExitIcon = styled(ImExit)`
+export const ExitIcon = styled(BiExit)`
   ${iconsCss}
 `
 
