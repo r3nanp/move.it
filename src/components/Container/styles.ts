@@ -2,14 +2,15 @@ import styled from 'styled-components'
 
 export const Container = styled.main`
   height: 100vh;
-  max-width: 992px;
+  max-width: 62rem;
   margin: 0 auto;
   padding: 2.5rem 2rem;
 
   display: flex;
   flex-direction: column;
-`
 
-export const Leaderboard = styled.section`
-  display: flex;
+  @media screen and (max-width: 768px) {
+    margin-left: 3.5rem;
+    width: 100%;
+  }
 `

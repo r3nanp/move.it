@@ -1,13 +1,15 @@
 import { GetServerSideProps } from 'next'
+import type { User } from 'types/User'
+import type { ChallengeProps } from 'types/Challenges'
 
 import { ExerciseTemplate } from 'templates/exercise'
 import { protectedRoutes } from 'utils/protected-routes'
-import { getCookie } from 'utils/cookies'
+import { prisma } from 'utils/prisma'
+import { getUser } from 'backend/queries/user-query'
 
 type ExerciseProps = {
-  level: number
-  currentExperience: number
-  challengesCompleted: number
+  user: User
+  challenges: ChallengeProps[]
 }
 
 export default function ExercisePage(props: ExerciseProps): JSX.Element {
@@ -17,19 +19,39 @@ export default function ExercisePage(props: ExerciseProps): JSX.Element {
 export const getServerSideProps: GetServerSideProps = async context => {
   const session = await protectedRoutes(context)
 
-  const level = getCookie('level', context)
-  const currentExperience = getCookie('currentExperience', context)
-  const challengesCompleted = getCookie('challengesCompleted', context)
-
   if (!session) {
     return { props: {} }
   }
 
+  const userAccessToken = await prisma.session.findUnique({
+    where: {
+      accessToken: session.accessToken
+    }
+  })
+
+  const prismaUser = await getUser(userAccessToken.userId)
+
+  const prismaChallenges = await prisma.challenges.findMany()
+
+  const challenges = prismaChallenges.map(challenge => ({
+    type: challenge.type,
+    amount: challenge.amount,
+    description: challenge.description
+  }))
+
+  const user = {
+    name: prismaUser.name,
+    email: prismaUser.email,
+    avatar: prismaUser.image,
+    level: prismaUser.level,
+    challengesCompleted: prismaUser.challengesCompleted,
+    currentExperience: prismaUser.currentExperience
+  }
+
   return {
     props: {
-      level: Number(level),
-      currentExperience: Number(currentExperience),
-      challengesCompleted: Number(challengesCompleted)
+      user,
+      challenges
     }
   }
 }

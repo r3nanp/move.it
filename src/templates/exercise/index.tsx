@@ -1,68 +1,60 @@
 import { useSession } from 'next-auth/client'
 
-//* CONTEXTS
+//* CUSTOM IMPORTS
 import { CountdownProvider } from 'contexts/CountdownContext'
 import { ChallengesProvider } from 'contexts/ChallengesContext'
-import { useAuth } from 'hooks/useAuth'
-
 import {
   ChallengeBox,
   Countdown,
+  Container,
   CompletedChallenges,
   ExperienceBar,
   Profile,
   Spinner,
-  SEO,
-  Sidebar
+  SEO
 } from 'components'
-import challenges from '../../../challenges.json'
+import type { User } from 'types/User'
+import type { ChallengeProps } from 'types/Challenges'
 import * as S from './styles'
 
 type ExerciseProps = {
-  level: number
-  currentExperience: number
-  challengesCompleted: number
+  user: User
+  challenges: ChallengeProps[]
 }
 
 export function ExerciseTemplate({
-  level,
-  currentExperience,
-  challengesCompleted
+  user,
+  challenges
 }: ExerciseProps): JSX.Element {
   const [session, loading] = useSession()
-  const { handleSignOut } = useAuth()
 
   return (
     <ChallengesProvider
-      level={level}
-      currentExperience={currentExperience}
-      challengesCompleted={challengesCompleted}
+      level={user?.level}
+      accessToken={session?.accessToken}
+      currentExperience={user?.currentExperience}
+      challengesCompleted={user?.challengesCompleted}
       challenges={challenges}
     >
-      <Sidebar handleExit={handleSignOut} />
-      <S.Container>
+      <Container>
         <SEO title="Move.it | Exercise" />
         {loading && <Spinner />}
 
         <ExperienceBar />
+
         <CountdownProvider>
           <S.Content>
-            <div>
-              {session && (
-                <Profile
-                  imageUrl={session.user.picture}
-                  name={session.user.name}
-                />
-              )}
+            <section id="profile">
+              {session && <Profile imageUrl={user.avatar} name={user.name} />}
               <CompletedChallenges />
               <Countdown />
-            </div>
-            <div>
+            </section>
+            <section id="challenge-box">
               <ChallengeBox />
-            </div>
+            </section>
           </S.Content>
         </CountdownProvider>
-      </S.Container>
+      </Container>
     </ChallengesProvider>
   )
 }

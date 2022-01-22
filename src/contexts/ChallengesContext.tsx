@@ -1,19 +1,16 @@
 import { ReactNode, useCallback, useEffect, useMemo, useState } from 'react'
 import { createContext } from 'use-context-selector'
-import { setCookie } from 'utils/cookies'
+import axios from 'axios'
+import toast from 'react-hot-toast'
 
 import { LevelUpModal } from 'components/LevelUpModal'
-
-type ChallengeProps = {
-  type: string
-  description: string
-  amount: number
-}
+import { ChallengeProps } from 'types/Challenges'
 
 type ChallengesContextData = {
   challengesCompleted: number
   currentExperience: number
   level: number
+  isLoading: boolean
   experienceToNextLevel: number
   activeChallenge: ChallengeProps
   isLevelUpModalOpen: boolean
@@ -28,6 +25,7 @@ type ProviderProps = {
   challenges: ChallengeProps[]
   challengesCompleted: number
   currentExperience: number
+  accessToken: string
   level: number
 }
 
@@ -35,6 +33,7 @@ export const ChallengesContext = createContext({} as ChallengesContextData)
 
 export function ChallengesProvider({
   children,
+  accessToken,
   ...rest
 }: ProviderProps): JSX.Element {
   //* STATES
@@ -48,6 +47,7 @@ export function ChallengesProvider({
   const [activeChallenge, setActiveChallenge] = useState<ChallengeProps | null>(
     null
   )
+  const [isLoading, setIsLoading] = useState(false)
   const [isLevelUpModalOpen, setIsLevelUpModalOpen] = useState(false)
 
   const experienceToNextLevel = useMemo(() => Math.pow((level + 1) * 4, 2), [
@@ -57,12 +57,6 @@ export function ChallengesProvider({
   useEffect(() => {
     Notification.requestPermission()
   }, [])
-
-  useEffect(() => {
-    setCookie('level', String(level))
-    setCookie('currentExperience', String(currentExperience))
-    setCookie('challengesCompleted', String(challengesCompleted))
-  }, [level, currentExperience, challengesCompleted])
 
   const levelUp = useCallback(() => {
     setLevel(level + 1)
@@ -91,27 +85,49 @@ export function ChallengesProvider({
     setActiveChallenge(null)
   }, [])
 
-  const completeChallenge = useCallback(() => {
+  const completeChallenge = useCallback(async () => {
     if (!activeChallenge) return
 
     const { amount } = activeChallenge
 
     let finalExperience = currentExperience + amount
+    let isLevelUpdated = false
 
     if (finalExperience >= experienceToNextLevel) {
       finalExperience = finalExperience - experienceToNextLevel
 
       levelUp()
+      isLevelUpdated = true
     }
+
+    setIsLoading(true)
+
+    try {
+      await axios.put('/api/complete-challenge', {
+        level: isLevelUpdated ? level : level + 1,
+        currentExperience: finalExperience,
+        challengesCompleted: challengesCompleted + 1,
+        accessToken,
+        amount
+      })
+    } catch (e) {
+      toast.error(e)
+    }
+
+    isLevelUpdated = false
+
+    setIsLoading(false)
 
     setCurrentExperience(finalExperience)
     setActiveChallenge(null)
     setChallengesCompleted(challengesCompleted + 1)
   }, [
+    accessToken,
     activeChallenge,
     challengesCompleted,
     currentExperience,
     experienceToNextLevel,
+    level,
     levelUp
   ])
 
@@ -119,12 +135,16 @@ export function ChallengesProvider({
     <ChallengesContext.Provider
       {...rest}
       value={{
+        //* STATES
         level,
         isLevelUpModalOpen,
         currentExperience,
         challengesCompleted,
         activeChallenge,
         experienceToNextLevel,
+        isLoading,
+
+        //* FUNCTIONS
         levelUp,
         completeChallenge,
         startNewChallenge,

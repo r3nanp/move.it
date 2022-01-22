@@ -2,7 +2,7 @@ import { GetServerSidePropsContext } from 'next'
 import nookies from 'nookies'
 
 const MAX_AGE_SECONDS = 60 * 60 * 24 * 365 // 1 year
-const APP_KEY = 'MoveIt'
+const APP_KEY = '@MoveIt'
 
 type Cookie = {
   [key: string]: string

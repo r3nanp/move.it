@@ -5,7 +5,7 @@ describe('getStorageItem()', () => {
     window.localStorage.clear()
   })
   it('should return the item from localStorage', () => {
-    window.localStorage.setItem('@MoveIt-level', JSON.stringify('2'))
+    window.localStorage.setItem('@MoveIt_level', JSON.stringify('2'))
 
     expect(getStorageItem('level')).toStrictEqual('2')
   })
@@ -18,7 +18,7 @@ describe('setStorageItem()', () => {
   it('should add the item to localStorage', () => {
     setStorageItem('level', '1')
 
-    expect(window.localStorage.getItem('@MoveIt-level')).toStrictEqual(
+    expect(window.localStorage.getItem('@MoveIt_level')).toStrictEqual(
       JSON.stringify('1')
     )
   })

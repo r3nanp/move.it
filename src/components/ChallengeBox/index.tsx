@@ -1,11 +1,17 @@
 import { useCallback } from 'react'
+import Image from 'next/image'
+
 import { useChallenges } from 'hooks/useChallenges'
 import { useCountdown } from 'hooks/useCountdown'
-
 import * as S from './styles'
 
 export function ChallengeBox(): JSX.Element {
-  const { activeChallenge, resetChallenge, completeChallenge } = useChallenges()
+  const {
+    activeChallenge,
+    resetChallenge,
+    completeChallenge,
+    isLoading
+  } = useChallenges()
 
   const { resetCountdown } = useCountdown()
 
@@ -26,18 +32,30 @@ export function ChallengeBox(): JSX.Element {
           <header>Ganhe {activeChallenge.amount} xp</header>
 
           <div className="challenge">
-            <img src={`icons/${activeChallenge.type}.svg`} alt="Body" />
+            <Image
+              src={`/icons/${activeChallenge.type.toLocaleLowerCase()}.svg`}
+              alt="Body"
+              width={88}
+              height={88}
+            />
             <strong>Novo desafio</strong>
             <p>{activeChallenge.description}</p>
           </div>
 
           <footer>
-            <S.Button type="button" isFailed onClick={handleChallengeFailed}>
+            <S.Button
+              isFailed
+              variant="opaque-red"
+              type="button"
+              onClick={handleChallengeFailed}
+            >
               Falhei
             </S.Button>
             <S.Button
-              type="button"
+              isLoading={isLoading}
               isFailed={false}
+              variant="opaque-green"
+              type="button"
               onClick={handleChallengeSucceeded}
             >
               Completei
