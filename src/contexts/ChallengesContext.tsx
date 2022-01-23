@@ -1,11 +1,12 @@
 import { ReactNode, useCallback, useEffect, useMemo, useState } from 'react'
 import { createContext } from 'use-context-selector'
-import axios from 'axios'
+// import axios from 'axios'
 import toast from 'react-hot-toast'
 
 //* CUSTOM IMPORTS
 import { LevelUpModal } from 'components/LevelUpModal'
 import { ChallengeProps } from 'types/Challenges'
+import { api } from 'services/api'
 
 type ChallengesContextData = {
   challengesCompleted: number
@@ -86,6 +87,7 @@ export function ChallengesProvider({
     setActiveChallenge(null)
   }, [])
 
+  console.log(accessToken)
   const completeChallenge = useCallback(async () => {
     if (!activeChallenge) return
 
@@ -100,19 +102,20 @@ export function ChallengesProvider({
       levelUp()
       isLevelUpdated = true
     }
-
     setIsLoading(true)
 
     try {
-      await axios.put('/api/complete-challenge', {
+      const user = await api.put('/api/complete-challenge', {
         level: isLevelUpdated ? level : level + 1,
         currentExperience: finalExperience,
         challengesCompleted: challengesCompleted + 1,
         accessToken,
         amount
       })
+
+      console.log(user)
     } catch (e) {
-      toast.error(e)
+      toast.error(e.message)
     }
 
     isLevelUpdated = false

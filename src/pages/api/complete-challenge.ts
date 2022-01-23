@@ -17,8 +17,12 @@ async function updateUser(req: NextApiRequest, res: NextApiResponse) {
       amount
     } = req.body
 
+    console.log(accessToken)
+
     const user = await getSession(String(accessToken))
     const userXp = await getUser(user.userId)
+
+    console.log(userXp)
 
     const totalExperience = Number(amount) + Number(userXp.totalExperience)
 
@@ -30,9 +34,11 @@ async function updateUser(req: NextApiRequest, res: NextApiResponse) {
       totalExperience
     })
 
-    return res.json({ updatedUser })
+    res.writeHead(200, { 'Content-Type': 'application/json' })
+    res.status(200).end(updatedUser)
   } catch (e) {
-    res.status(400).json(e)
+    // res.setHeader('Content-Type', 'application/json')
+    res.status(500).end(e.message)
   }
 }
 

@@ -18,7 +18,7 @@ type CountdownProps = {
 }
 
 let countdownTimeout: NodeJS.Timeout
-const TWENTYFIVE_MINUTES = 25 * 60
+const TWENTYFIVE_MINUTES = 1
 
 export const CountdownContext = createContext({} as CountdownContextData)
 
