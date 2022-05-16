@@ -1,17 +1,18 @@
 import { FormEvent } from 'react'
 import Image from 'next/image'
-import { SEO, Button } from 'components'
 
+//* CUSTOM IMPORTS
+import { SEO, Button } from 'components'
 import * as S from './styles'
 
 type SignInProps = {
-  handleLogin: (event: FormEvent) => void
   isLoading: boolean
+  handleLogin: (event: FormEvent) => void
 }
 
 export function SignInTemplate({
-  handleLogin,
-  isLoading
+  isLoading,
+  handleLogin
 }: SignInProps): JSX.Element {
   return (
     <S.Container>

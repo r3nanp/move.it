@@ -1,14 +1,11 @@
 import { render } from '@testing-library/react'
 import { LevelUpModal } from './index'
 
-const screen = render(<LevelUpModal />)
-
 it('should render title', () => {
+  const modal = jest.fn()
+
+  const screen = render(<LevelUpModal level={12} closeModal={modal} />)
   expect(screen.getByText('Você alcançou um novo level!')).toBeInTheDocument()
 })
 
-// it('should verify if overlay exists', () => {
-//   const overlay = screen.getByText(/overlay/).parentElement
-
-//   expect(overlay).toHaveAttribute('aria-hidden', 'false')
-// })
+it.todo('should verify if overlay exists')

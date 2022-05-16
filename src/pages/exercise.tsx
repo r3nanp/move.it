@@ -1,11 +1,11 @@
 import { GetServerSideProps } from 'next'
+
+import { getUser } from 'backend'
 import type { User } from 'types/User'
 import type { ChallengeProps } from 'types/Challenges'
-
 import { ExerciseTemplate } from 'templates/exercise'
 import { protectedRoutes } from 'utils/protected-routes'
 import { prisma } from 'utils/prisma'
-import { getUser } from 'backend/queries/user-query'
 
 type ExerciseProps = {
   user: User

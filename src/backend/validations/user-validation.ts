@@ -1,6 +1,6 @@
 import * as yup from 'yup'
 
-export const schema = yup.object().shape({
+export const userSchemaValidation = yup.object().shape({
   level: yup
     .number()
     .positive('Level must be greater than 0')

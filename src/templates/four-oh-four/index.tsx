@@ -2,9 +2,14 @@ import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
 
+import { useAuth } from 'hooks'
 import * as S from './styles'
 
 export function FourOhFourTemplate(): JSX.Element {
+  const { isUserLogged } = useAuth()
+
+  console.log(isUserLogged)
+
   return (
     <S.Container>
       <Head>
@@ -22,7 +27,7 @@ export function FourOhFourTemplate(): JSX.Element {
           A página que você requisitou não foi encontrada. Acho que você se
           perdeu. Os exercícios não são aqui. Vamos lá?
         </p>
-        <Link href="/">
+        <Link href={isUserLogged ? '/exercise' : '/'}>
           <a>Voltar a home</a>
         </Link>
       </S.RightContent>
