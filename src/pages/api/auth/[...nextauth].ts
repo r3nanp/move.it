@@ -1,8 +1,8 @@
 import { NextApiRequest, NextApiResponse } from 'next'
 import NextAuth, { User, InitOptions } from 'next-auth'
 import Providers from 'next-auth/providers'
-import { PrismaClient } from '@prisma/client'
 import Adapters from 'next-auth/adapters'
+import { PrismaClient } from '@prisma/client'
 
 import { GITHUB_CLIENT_ID, GITHUB_CLIENT_SECRET } from 'constants/auth'
 

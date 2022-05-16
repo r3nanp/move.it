@@ -11,7 +11,7 @@ export function useAuth() {
 
   return {
     isLoading,
-    handleSignOut,
-    handleLogin
+    handleLogin,
+    handleSignOut
   }
 }

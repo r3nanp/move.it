@@ -2,19 +2,19 @@ import { NextApiRequest, NextApiResponse } from 'next'
 import {
   getSession,
   getUser,
+  validate,
+  userSchemaValidation,
   updateUser as prismaUpdateUser
-} from 'backend/queries/user-query'
-import { schema } from 'backend/validations/user-validation'
-import { validate } from 'backend/middleware/validate-middleware'
+} from 'backend'
 
 async function updateUser(req: NextApiRequest, res: NextApiResponse) {
   try {
     const {
       level,
-      currentExperience,
-      challengesCompleted,
+      amount,
       accessToken,
-      amount
+      currentExperience,
+      challengesCompleted
     } = req.body
 
     const user = await getSession(String(accessToken))
@@ -24,10 +24,10 @@ async function updateUser(req: NextApiRequest, res: NextApiResponse) {
 
     const updatedUser = await prismaUpdateUser({
       id: user.userId,
+      totalExperience,
       level: Number(level),
       currentExperience: Number(currentExperience),
-      challengesCompleted: Number(challengesCompleted),
-      totalExperience
+      challengesCompleted: Number(challengesCompleted)
     })
 
     return res.json({ updatedUser })
@@ -50,4 +50,4 @@ export async function handler(
   }
 }
 
-export default validate(schema, handler)
+export default validate(userSchemaValidation, handler)

@@ -1,6 +1,6 @@
 import { useState, useEffect, ReactNode, useMemo, useCallback } from 'react'
-import { createContext, useContext } from 'use-context-selector'
-import { ChallengesContext } from './ChallengesContext'
+import { createContext } from 'use-context-selector'
+import { useChallenges } from 'hooks'
 
 type CountdownContextData = {
   minutes: number
@@ -21,7 +21,7 @@ const TWENTYFIVE_MINUTES = 25 * 60
 export const CountdownContext = createContext({} as CountdownContextData)
 
 export function CountdownProvider({ children }: CountdownProps): JSX.Element {
-  const { startNewChallenge } = useContext(ChallengesContext)
+  const { startNewChallenge } = useChallenges()
 
   const [time, setTime] = useState(TWENTYFIVE_MINUTES)
   const [isActive, setIsActive] = useState(false)
